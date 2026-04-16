@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Aligned Daily · April 16, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  color: #111;
+  line-height: 1.55;
+  overflow-x: hidden;
+  background: #0a0a0a;
+}
+img, svg { display: block; max-width: 100%; }
+
+/* ---------- Progress Bar ---------- */
+.progress {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0;
+  background: linear-gradient(90deg, #c8102e, #ffb800);
+  z-index: 9999; transition: width 0.08s linear;
+}
+
+/* ---------- Applies To You Badge ---------- */
+.applies {
+  display: inline-flex; align-items: center; gap: 0.5em;
+  background: #c8102e; color: #fff;
+  padding: 0.35em 0.8em; border-radius: 999px;
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ---------- Source Link ---------- */
+.source-link {
+  display: inline-flex; align-items: center; gap: 0.4em;
+  color: inherit; text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px; transition: opacity 0.2s;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem; font-weight: 500;
+}
+.source-link:hover { opacity: 0.6; }
+.source-link .arrow { font-size: 0.85em; }
+
+/* ---------- Shared Section Skeleton ---------- */
+section.story {
+  min-height: 100vh;
+  padding: 8vh 6vw;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.75;
+}
+
+.story-number {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  line-height: 0.85;
+}
+
+.display-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  font-size: clamp(2.8rem, 6.5vw, 6rem);
+}
+
+.story-body {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1.1rem, 1.4vw, 1.35rem);
+  font-weight: 400;
+  line-height: 1.55;
+  max-width: 58ch;
+}
+
+.story-meta { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+
+/* Reveal */
+.reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.reveal.in { opacity: 1; transform: none; }
+.reveal.d1 { transition-delay: 0.1s; }
+.reveal.d2 { transition-delay: 0.25s; }
+.reveal.d3 { transition-delay: 0.4s; }
+.reveal.d4 { transition-delay: 0.55s; }
+
+/* ---------- COVER ---------- */
+.cover {
+  background: #0a0a0a;
+  color: #f2efe7;
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 6vh 6vw;
+  position: relative;
+  overflow: hidden;
+}
+.cover::after {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 10%, rgba(200,16,46,0.18), transparent 60%),
+    radial-gradient(ellipse at 85% 90%, rgba(255,184,0,0.08), transparent 55%);
+  pointer-events: none;
+}
+.cover-head { display: flex; justify-content: space-between; align-items: flex-start; position: relative; z-index: 2; }
+.masthead-name {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.3rem, 1.8vw, 1.8rem);
+  letter-spacing: -0.01em;
+  color: #f2efe7;
+}
+.cover-issue {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #aaa49a;
+  text-align: right;
+  line-height: 1.8;
+}
+.cover-center { position: relative; z-index: 2; }
+.cover-kicker {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #c8102e;
+  margin-bottom: 1.5rem;
+}
+.cover-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(4rem, 13vw, 13rem);
+  line-height: 0.82;
+  letter-spacing: -0.045em;
+  color: #f2efe7;
+  margin-bottom: 2rem;
+}
+.cover-title em { font-style: italic; font-weight: 400; color: #ffb800; }
+.cover-date {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(1.5rem, 2.6vw, 2.4rem);
+  color: #aaa49a;
+  letter-spacing: 0.01em;
+}
+.cover-foot {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  position: relative; z-index: 2;
+  border-top: 1px solid rgba(242,239,231,0.18);
+  padding-top: 1.8rem;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.cover-credits {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.82rem;
+  color: #aaa49a;
+  max-width: 40ch;
+  line-height: 1.7;
+}
+.cover-toc {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  color: #aaa49a;
+  text-align: right;
+  line-height: 1.9;
+}
+.cover-toc .dot { color: #c8102e; font-size: 1.2em; line-height: 0; }
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem; left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #aaa49a;
+  animation: pulse 2s infinite;
+  z-index: 2;
+}
+@keyframes pulse { 0%, 100% { opacity: 0.5; transform: translateX(-50%) translateY(0); } 50% { opacity: 1; transform: translateX(-50%) translateY(6px); } }
+
+/* ---------- 01 · HERO NUMERAL · CREAM ---------- */
+.story-01 {
+  background: #f2eee4;
+  color: #1a1a1a;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3rem;
+}
+.story-01 .num-hero {
+  font-size: clamp(14rem, 32vw, 32rem);
+  font-weight: 200;
+  line-height: 0.82;
+  letter-spacing: -0.05em;
+  color: #1a1a1a;
+  position: absolute;
+  bottom: -4vw; right: -2vw;
+  opacity: 0.09;
+  pointer-events: none;
+  font-style: italic;
+}
+.story-01 .content { position: relative; z-index: 2; max-width: 900px; }
+.story-01 .display-headline { color: #1a1a1a; }
+.story-01 .display-headline em { font-style: italic; color: #c8102e; }
+
+/* ---------- 02 · GHOST OUTLINE · NEAR-BLACK ---------- */
+.story-02 {
+  background: #141414;
+  color: #f2efe7;
+  align-items: center;
+}
+.story-02 .num-ghost {
+  font-size: clamp(18rem, 40vw, 42rem);
+  font-weight: 700;
+  -webkit-text-stroke: 2px rgba(255,255,255,0.18);
+  color: transparent;
+  line-height: 0.8;
+  position: absolute;
+  left: -4vw; top: 50%; transform: translateY(-50%);
+  pointer-events: none;
+  font-style: italic;
+}
+.story-02 .content { position: relative; z-index: 2; margin-left: auto; max-width: 680px; }
+.story-02 .display-headline { color: #f2efe7; }
+.story-02 .display-headline em { font-style: italic; color: #ffb800; }
+.story-02 .story-body { color: #c0bab0; }
+
+/* ---------- 03 · STAMP · CRIMSON ---------- */
+.story-03 {
+  background: #a0101e;
+  color: #fff5e6;
+  flex-direction: column; justify-content: center; gap: 2.5rem;
+  position: relative;
+}
+.story-03::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: radial-gradient(circle at 2px 2px, rgba(255,245,230,0.1) 1px, transparent 0);
+  background-size: 18px 18px;
+  pointer-events: none;
+}
+.story-03 .num-stamp {
+  display: inline-block;
+  border: 5px solid #fff5e6;
+  padding: 0.2em 0.55em;
+  font-size: clamp(4rem, 8vw, 8rem);
+  font-weight: 600;
+  line-height: 1;
+  transform: rotate(-5deg);
+  letter-spacing: -0.05em;
+  font-family: 'Fraunces', serif;
+  box-shadow: 10px 10px 0 rgba(0,0,0,0.12);
+  margin-bottom: 1rem;
+}
+.story-03 .content { position: relative; z-index: 2; max-width: 900px; }
+.story-03 .display-headline { color: #fff5e6; }
+.story-03 .display-headline em { font-style: italic; color: #ffd177; }
+
+/* ---------- 04 · TERMINAL BLOCK · TERMINAL GREEN ---------- */
+.story-04 {
+  background: #051a10;
+  color: #6aff9e;
+  font-family: 'Inter', monospace;
+  flex-direction: column; justify-content: center; gap: 2rem;
+  position: relative;
+}
+.story-04::before {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(106,255,158,0.04) 0px,
+    rgba(106,255,158,0.04) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  pointer-events: none;
+}
+.story-04 .term-prompt {
+  font-family: 'Inter', monospace;
+  font-size: 0.9rem;
+  color: #6aff9e;
+  opacity: 0.85;
+  letter-spacing: 0.02em;
+}
+.story-04 .term-prompt .caret { animation: blink 1s infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.story-04 .num-terminal {
+  display: inline-block;
+  background: #6aff9e;
+  color: #051a10;
+  padding: 0.15em 0.45em;
+  font-family: 'Fraunces', serif;
+  font-size: clamp(5rem, 9vw, 9rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+.story-04 .content { position: relative; z-index: 2; max-width: 900px; }
+.story-04 .display-headline { color: #d9ffe4; font-family: 'Fraunces', serif; }
+.story-04 .display-headline em { font-style: italic; color: #6aff9e; }
+.story-04 .story-body { color: #a6e8ba; }
+.story-04 .stat-counter {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(4rem, 8vw, 8rem);
+  font-weight: 700;
+  line-height: 1;
+  color: #6aff9e;
+  letter-spacing: -0.03em;
+  margin: 1.5rem 0 0.5rem;
+}
+.story-04 .stat-label {
+  font-family: 'Inter', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #6aff9e;
+  opacity: 0.75;
+}
+
+/* ---------- 05 · DROP-CAP · IVORY ---------- */
+.story-05 {
+  background: #faf7f0;
+  color: #1a1a1a;
+  align-items: center;
+}
+.story-05 .content { max-width: 850px; margin: 0 auto; position: relative; z-index: 2; }
+.story-05 .drop-cap-para {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.35rem, 1.9vw, 1.75rem);
+  line-height: 1.5;
+  color: #1a1a1a;
+  font-weight: 400;
+}
+.story-05 .drop-cap-para::first-letter {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 900;
+  float: left;
+  font-size: 7.5em;
+  line-height: 0.85;
+  padding: 0.1em 0.15em 0 0;
+  color: #c8102e;
+}
+.story-05 .display-headline { color: #1a1a1a; margin-bottom: 2rem; }
+.story-05 .display-headline em { font-style: italic; color: #c8102e; }
+
+/* ---------- 06 · BIG-STAT · DEEP NAVY ---------- */
+.story-06 {
+  background: #0d1b3d;
+  color: #e6ecff;
+  flex-direction: column; justify-content: center; gap: 2rem;
+}
+.story-06 .num-bigstat {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(7rem, 16vw, 17rem);
+  font-weight: 800;
+  line-height: 0.82;
+  letter-spacing: -0.04em;
+  color: #ffb800;
+  margin-bottom: 0.5rem;
+}
+.story-06 .num-bigstat-sub {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  color: #8aa0d9;
+  letter-spacing: -0.01em;
+}
+.story-06 .content { position: relative; z-index: 2; max-width: 900px; }
+.story-06 .display-headline { color: #e6ecff; }
+.story-06 .display-headline em { font-style: italic; color: #ffb800; }
+.story-06 .story-body { color: #a8b5d9; }
+
+/* ---------- 07 · TABLOID · BRIGHT YELLOW ---------- */
+.story-07 {
+  background: #ffd93d;
+  color: #1a1a1a;
+  flex-direction: column; justify-content: center; gap: 2rem;
+}
+.story-07::before {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(-5deg, transparent 0 40px, rgba(0,0,0,0.03) 40px 41px);
+  pointer-events: none;
+}
+.story-07 .num-tabloid {
+  font-family: 'Fraunces', serif;
+  font-weight: 900;
+  font-size: clamp(9rem, 22vw, 24rem);
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+  color: #1a1a1a;
+  font-style: italic;
+  display: inline-block;
+  transform: rotate(-3deg);
+  text-shadow: 8px 8px 0 rgba(200,16,46,0.9);
+  margin-bottom: 1rem;
+}
+.story-07 .content { position: relative; z-index: 2; max-width: 900px; }
+.story-07 .display-headline { color: #1a1a1a; text-transform: uppercase; font-weight: 900; font-size: clamp(2.6rem, 6vw, 5.5rem); }
+.story-07 .display-headline em { font-style: italic; color: #c8102e; }
+.story-07 .tag-line {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.3rem, 1.7vw, 1.6rem);
+  color: #7a1010;
+  border-top: 3px solid #1a1a1a;
+  border-bottom: 3px solid #1a1a1a;
+  padding: 0.6rem 0;
+  display: inline-block;
+  max-width: 60ch;
+}
+
+/* ---------- 08 · PARTICLE CANVAS · DEEP INDIGO (SCIENCE) ---------- */
+.story-08 {
+  background: #1a0f3d;
+  color: #e8e0ff;
+  flex-direction: column; justify-content: center; gap: 2rem;
+  position: relative;
+}
+#particles {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+.story-08 .content { position: relative; z-index: 2; max-width: 900px; }
+.story-08 .num-particle {
+  font-family: 'Fraunces', serif;
+  font-weight: 200;
+  font-style: italic;
+  font-size: clamp(10rem, 24vw, 26rem);
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+  background: linear-gradient(135deg, #c4a0ff 0%, #7a5aff 50%, #4a90ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 1rem;
+}
+.story-08 .display-headline { color: #f5efff; }
+.story-08 .display-headline em { font-style: italic; color: #c4a0ff; }
+.story-08 .story-body { color: #b8a8e0; }
+
+/* ---------- 09 · STARFIELD · SPACE BLACK ---------- */
+.story-09 {
+  background: #000;
+  color: #f0f0f0;
+  flex-direction: column; justify-content: center; gap: 2rem;
+  position: relative;
+}
+#starfield {
+  position: absolute; inset: 0;
+  z-index: 1;
+  overflow: hidden;
+}
+#starfield .star {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  animation: twinkle 4s infinite ease-in-out;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.25; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+.story-09 .content { position: relative; z-index: 2; max-width: 900px; }
+.story-09 .num-starfield {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(10rem, 22vw, 24rem);
+  line-height: 0.82;
+  letter-spacing: -0.04em;
+  color: #f0f0f0;
+  text-shadow:
+    0 0 40px rgba(255,255,255,0.3),
+    0 0 80px rgba(140,180,255,0.2);
+  margin-bottom: 1rem;
+}
+.story-09 .display-headline { color: #f0f0f0; }
+.story-09 .display-headline em { font-style: italic; color: #8cb4ff; }
+.story-09 .story-body { color: #c0c0c8; }
+
+/* ---------- 10 · ORGANIC · SAGE GREEN ---------- */
+.story-10 {
+  background: #b7c4a4;
+  color: #1d2416;
+  flex-direction: column; justify-content: center; gap: 2rem;
+  position: relative;
+}
+.story-10::before {
+  content: ''; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 40% 30% at 15% 80%, rgba(29,36,22,0.09), transparent),
+    radial-gradient(ellipse 50% 40% at 85% 15%, rgba(29,36,22,0.06), transparent);
+  pointer-events: none;
+}
+.story-10 .num-organic {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(12rem, 28vw, 30rem);
+  line-height: 0.8;
+  letter-spacing: -0.03em;
+  color: #1d2416;
+  opacity: 0.85;
+  margin-bottom: 0;
+  text-shadow: 0 2px 0 rgba(255,255,255,0.25);
+}
+.story-10 .content { position: relative; z-index: 2; max-width: 900px; }
+.story-10 .display-headline { color: #1d2416; }
+.story-10 .display-headline em { font-style: italic; color: #4a5a3a; }
+.story-10 .story-body { color: #2e3a22; }
+
+/* ---------- Colophon ---------- */
+.colophon {
+  background: #0a0a0a;
+  color: #aaa49a;
+  padding: 8vh 6vw;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+}
+.colophon-title {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: clamp(2rem, 3vw, 3rem);
+  color: #f2efe7;
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+.colophon-body {
+  max-width: 52ch;
+  margin: 0 auto;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+.colophon-foot {
+  margin-top: 3rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.5;
+}
+
+/* ---------- Responsive tweaks ---------- */
+@media (max-width: 720px) {
+  section.story { padding: 6vh 6vw; }
+  .story-02 .content { margin-left: 0; }
+  .cover-title { font-size: clamp(3.5rem, 18vw, 9rem); }
+}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+
+<!-- ============ COVER ============ -->
+<header class="cover">
+  <div class="cover-head">
+    <div class="masthead-name">The Aligned Daily</div>
+    <div class="cover-issue">
+      Vol. I &nbsp;·&nbsp; No. 047<br>
+      A Spencer Lowder Brief<br>
+      Editorial / Autonomous
+    </div>
+  </div>
+
+  <div class="cover-center">
+    <div class="cover-kicker">Today in things worth knowing</div>
+    <h1 class="cover-title">Ten<br>Stories,<br><em>one morning.</em></h1>
+    <div class="cover-date">Thursday, April&nbsp;16,&nbsp;2026</div>
+  </div>
+
+  <div class="cover-foot">
+    <div class="cover-credits">
+      Curated for a creator, conference organizer, and aspiring cyborg. Stories marked <span class="applies" style="padding:0.2em 0.55em;font-size:0.62rem;">Applies to You</span> map directly to Spencer's work.
+    </div>
+    <div class="cover-toc">
+      01 <span class="dot">·</span> Anthropic's design play<br>
+      02 <span class="dot">·</span> Firefly becomes an agent<br>
+      03 <span class="dot">·</span> Claude Code takes over<br>
+      04 <span class="dot">·</span> MCP hits 97M<br>
+      05 <span class="dot">·</span> YouTube opens the gates<br>
+      06 <span class="dot">·</span> Human-centric algo<br>
+      07 <span class="dot">·</span> Labs unite vs. theft<br>
+      08 <span class="dot">·</span> Graphene goes liquid<br>
+      09 <span class="dot">·</span> Artemis II record<br>
+      10 <span class="dot">·</span> The public sours
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll ↓</div>
+</header>
+
+<!-- ============ 01 · ANTHROPIC DESIGN TOOL ============ -->
+<section class="story story-01" id="s1">
+  <div class="num-hero">01</div>
+  <div class="content">
+    <div class="reveal">
+      <div class="story-meta">
+        <span class="category-tag">AI × Creative Software</span>
+        <span class="applies">🚩 Applies to You</span>
+      </div>
+    </div>
+    <h2 class="display-headline reveal d1" style="margin-top:2rem;">Anthropic quietly drops a <em>design tool</em> that competes with Figma.</h2>
+    <p class="story-body reveal d2" style="margin-top:2rem;">Anthropic is preparing to ship Claude Opus 4.7 alongside a natural-language design tool that generates full websites, landing pages, and presentations from a prompt. The move puts Anthropic head-to-head with Figma, Adobe, and Canva — and turns Claude from a chat partner into a creative production studio.</p>
+    <div class="reveal d3" style="margin-top:2.5rem;">
+      <a class="source-link" href="https://www.pymnts.com/artificial-intelligence-2/2026/anthropics-new-design-tool-rivals-adobe-and-figma/" target="_blank" rel="noopener">PYMNTS <span class="arrow">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 · ADOBE FIREFLY ASSISTANT ============ -->
+<section class="story story-02" id="s2">
+  <div class="num-ghost">02</div>
+  <div class="content">
+    <div class="reveal">
+      <div class="story-meta">
+        <span class="category-tag">Creative Software</span>
+        <span class="applies">🚩 Applies to You</span>
+      </div>
+    </div>
+    <h2 class="display-headline reveal d1" style="margin-top:2rem;">Adobe's new agent <em>runs the whole Creative Cloud</em> for you.</h2>
+    <p class="story-body reveal d2" style="margin-top:2rem;">The Firefly AI Assistant is a conversational layer that orchestrates tasks across Photoshop, Premiere, Lightroom, Illustrator, Express, and Frame.io from a single prompt. It lands as CEO Shantanu Narayen announces he will step down once a successor is named — setting up the most consequential leadership transition in Adobe's modern era.</p>
+    <div class="reveal d3" style="margin-top:2.5rem;">
+      <a class="source-link" href="https://thenextweb.com/news/adobe-firefly-ai-assistant-creative-cloud-agentic-workflows" target="_blank" rel="noopener">The Next Web <span class="arrow">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 · CLAUDE CODE ROUTINES ============ -->
+<section class="story story-03" id="s3">
+  <div class="content">
+    <div class="reveal">
+      <div class="story-meta">
+        <span class="category-tag" style="color:#ffd177;">Dev Tools</span>
+        <span class="applies">🚩 Applies to You</span>
+      </div>
+    </div>
+    <div class="num-stamp reveal d1" style="margin-top:2rem;">03</div>
+    <h2 class="display-headline reveal d2" style="margin-top:1rem;">Claude Code has <em>eaten GitHub's trending page.</em></h2>
+    <p class="story-body reveal d3" style="margin-top:2rem; color:#ffe8cc;">Claude Code Routines scored 700 points on Hacker News — the highest for any company product launch that week — and five of the top ten trending GitHub repos are now Claude Code ecosystem tools. An entire developer economy has materialized around Anthropic's coding agent in under a year.</p>
+    <div class="reveal d4" style="margin-top:2.5rem;">
+      <a class="source-link" href="https://github.com/BuilderPulse/BuilderPulse/blob/main/en/2026/2026-04-16.md" target="_blank" rel="noopener">BuilderPulse <span class="arrow">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 · MCP 97M INSTALLS ============ -->
+<section class="story story-04" id="s4">
+  <div class="content">
+    <div class="term-prompt reveal">$ uptime --protocol=mcp<span class="caret">_</span></div>
+    <div class="reveal d1" style="margin-top:1.5rem;">
+      <div class="story-meta">
+        <span class="category-tag" style="color:#6aff9e;">Dev Tools × Infra</span>
+        <span class="applies">🚩 Applies to You</span>
+      </div>
+    </div>
+    <div class="num-terminal reveal d1" style="margin-top:1.5rem;">04</div>
+    <h2 class="display-headline reveal d2" style="margin-top:1.5rem;">MCP is <em>the new protocol layer</em> of agentic work.</h2>
+
+    <div class="reveal d2" style="margin-top:2rem;">
+      <div class="stat-counter" id="mcpStat" data-target="97">0M</div>
+      <div class="stat-label">Model Context Protocol installs · March 2026</div>
+    </div>
+
+    <p class="story-body reveal d3" style="margin-top:2rem;">The Agentic AI Foundation — announced under the Linux Foundation in December 2025 — is now anchored by Anthropic's MCP, OpenAI's AGENTS.md, and Block's goose framework. MCP crossed 97 million installs in March, cementing it as the default bridge between agents and tools, and 1Password has already shipped an integration that keeps MCP credentials out of plaintext.</p>
+    <div class="reveal d4" style="margin-top:2.5rem;">
+      <a class="source-link" href="https://www.1password.community/blog/developer-blog/developer-newsletter-april-2026/169147" target="_blank" rel="noopener" style="color:#6aff9e;">1Password Developer Newsletter <span class="arrow">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 · YOUTUBE 500 SUBS YPP ============ -->
+<section class="story story-05" id="s5">
+  <div class="content">
+    <div class="reveal">
+      <div class="story-meta">
+        <span class="category-tag">YouTube · Monetization</span>
+        <span class="applies">🚩 Applies to You</span>
+      </div>
+    </div>
+    <h2 class="display-headline reveal d1" style="margin-top:2rem;">YouTube just <em>lowered the drawbridge.</em></h2>
+    <p class="drop-cap-para reveal d2" style="margin-top:2.5rem;">Creators can now apply to the YouTube Partner Program with just 500 subscribers, 3 public videos, and 3,000 watch hours — or 3 million Shorts views — in the last 90 days. The move opens monetization to the long tail and reshapes what a viable "career starting line" looks like for anyone still in the first 1,000 subs.</p>
+    <div class="reveal d3" style="margin-top:2.5rem;">
+      <a class="source-link" href="https://milx.app/en/trends/youtube-monetization-requirements-for-2026" target="_blank" rel="noopener">MilX · Monetization Requirements <span class="arrow">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 · HUMAN-CENTRIC / INAUTHENTIC CONTENT POLICY ============ -->
+<section class="story story-06" id="s6">
+  <div class="content">
+    <div class="reveal">
+      <div class="story-meta">
+        <span class="category-tag" style="color:#8aa0d9;">YouTube · Algorithm</span>
+        <span class="applies">🚩 Applies to You</span>
+      </div>
+    </div>
+    <div class="reveal d1" style="margin-top:2rem;">
+      <div class="num-bigstat">100%</div>
+      <div class="num-bigstat-sub">of demonetization risk now flows through one question: is it human?</div>
+    </div>
+    <h2 class="display-headline reveal d2" style="margin-top:2.5rem;">The <em>Inauthentic Content Policy</em> draws a harder line.</h2>
+    <p class="story-body reveal d3" style="margin-top:2rem;">YouTube rebranded its "Repetitious Content" rule as the Inauthentic Content Policy and is now prioritizing human-centric creative work. AI tools are fine for ideation, scripting, or editing — but channels leaning on automation without a distinct creative voice are increasingly at demonetization risk, making personality the single most valuable durable asset a creator can build.</p>
+    <div class="reveal d4" style="margin-top:2.5rem;">
+      <a class="source-link" href="https://bosswallah.com/blog/creator-hub/youtube-ai-monetisation-policy-2026-what-changes-whats-allowed-and-whats-banned/" target="_blank" rel="noopener" style="color:#ffb800;">Boss Wallah · 2026 Policy Deep Dive <span class="arrow">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 · LABS UNITE VS CHINA ============ -->
+<section class="story story-07" id="s7">
+  <div class="content">
+    <div class="reveal">
+      <div class="story-meta">
+        <span class="category-tag">AI · Geopolitics</span>
+      </div>
+    </div>
+    <div class="num-tabloid reveal d1" style="margin-top:2rem;">07</div>
+    <h2 class="display-headline reveal d2" style="margin-top:0.5rem;">Three rivals, <em>one firewall.</em></h2>
+    <p class="tag-line reveal d3" style="margin-top:1.5rem;">OpenAI, Anthropic, and Google are now sharing intelligence through the Frontier Model Forum — the first coordinated defense between all three frontier labs.</p>
+    <p class="story-body reveal d3" style="margin-top:2rem;">The target: adversarial distillation attacks in which Chinese AI companies use the labs' own models to train competing systems. This is the first time OpenAI, Anthropic, and Google have operationally cooperated against anything, and it quietly reframes the competitive landscape as a three-vs-rest world.</p>
+    <div class="reveal d4" style="margin-top:2.5rem;">
+      <a class="source-link" href="https://www.bloomberg.com/news/articles/2026-04-06/openai-anthropic-google-unite-to-combat-model-copying-in-china" target="_blank" rel="noopener">Bloomberg <span class="arrow">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 · GRAPHENE FRICTIONLESS ELECTRONS (SCIENCE · PARTICLE) ============ -->
+<section class="story story-08" id="s8">
+  <canvas id="particles"></canvas>
+  <div class="content">
+    <div class="reveal">
+      <div class="story-meta">
+        <span class="category-tag" style="color:#c4a0ff;">Weird Science · Physics</span>
+      </div>
+    </div>
+    <div class="num-particle reveal d1" style="margin-top:1rem;">08</div>
+    <h2 class="display-headline reveal d2">Electrons in graphene <em>flow like liquid.</em></h2>
+    <p class="story-body reveal d3" style="margin-top:2rem;">Scientists have observed electrons in graphene flowing as a nearly frictionless quantum fluid — behavior that appears to defy a core law of transport physics. The finding sits alongside a new proton radius measurement that refines the Standard Model, making early 2026 one of the quieter but more foundational years for modern physics in decades.</p>
+    <div class="reveal d4" style="margin-top:2.5rem;">
+      <a class="source-link" href="https://www.sciencedaily.com/" target="_blank" rel="noopener" style="color:#c4a0ff;">ScienceDaily <span class="arrow">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 · ARTEMIS II (SPACE · STARFIELD) ============ -->
+<section class="story story-09" id="s9">
+  <div id="starfield"></div>
+  <div class="content">
+    <div class="reveal">
+      <div class="story-meta">
+        <span class="category-tag" style="color:#8cb4ff;">Space Exploration</span>
+      </div>
+    </div>
+    <div class="num-starfield reveal d1" style="margin-top:1rem;">09</div>
+    <h2 class="display-headline reveal d2">252,757 miles. <em>A new human record.</em></h2>
+    <p class="story-body reveal d3" style="margin-top:2rem;">NASA's Artemis II crewed lunar flyby — the first crewed mission beyond low Earth orbit since Apollo 17 in 1972 — broke the record for the furthest humans have ever been from Earth as Reid Wiseman, Victor Glover, Christina Koch, and Jeremy Hansen looped the far side of the Moon. It is, quietly, the opening act of the next half-century of human spaceflight.</p>
+    <div class="reveal d4" style="margin-top:2.5rem;">
+      <a class="source-link" href="https://en.wikipedia.org/wiki/2026_in_science" target="_blank" rel="noopener" style="color:#8cb4ff;">2026 in Science · Wikipedia <span class="arrow">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 · PUBLIC SOURS ON AI ============ -->
+<section class="story story-10" id="s10">
+  <div class="num-organic" style="position:absolute; top:8vh; right:6vw; z-index:1;">10</div>
+  <div class="content">
+    <div class="reveal">
+      <div class="story-meta">
+        <span class="category-tag">AI · Business & Culture</span>
+      </div>
+    </div>
+    <h2 class="display-headline reveal d1" style="margin-top:2rem;">The public is <em>souring on AI</em> — right as the labs IPO.</h2>
+    <p class="story-body reveal d2" style="margin-top:2rem;">OpenAI has crossed $25 billion in annualized revenue and is taking steps toward a public listing as soon as late 2026; Anthropic sits near $19 billion. But sentiment on AI and data centers is turning negative, creating a strange window where the valuations climb and the cultural patience erodes in tandem — a posture worth watching for anyone building a brand on creative AI tools.</p>
+    <div class="reveal d3" style="margin-top:2.5rem;">
+      <a class="source-link" href="https://www.cnbc.com/2026/04/15/public-opinion-ai-data-centers-anthropic-openai-ipo.html" target="_blank" rel="noopener">CNBC <span class="arrow">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COLOPHON ============ -->
+<footer class="colophon">
+  <div class="colophon-title">— Fin —</div>
+  <p class="colophon-body">
+    Written, laid out, and typeset autonomously at dawn. Stories selected for Spencer's taste profile: AI tools, creative-software disruption, dev tooling and MCP, privacy and security, weird science, YouTube creator economics, and anything actionable for a conference organizer. Red flags indicate stories directly relevant to VidSummit, Space Station, or Spencer's YouTube work.
+  </p>
+  <div class="colophon-foot">Issue 047 &nbsp;·&nbsp; The Aligned Daily &nbsp;·&nbsp; April 16, 2026</div>
+</footer>
+
+<script>
+/* ---------- Progress bar ---------- */
+(function(){
+  const bar = document.getElementById('progress');
+  function update(){
+    const h = document.documentElement;
+    const scrolled = h.scrollTop;
+    const height = h.scrollHeight - h.clientHeight;
+    const pct = height > 0 ? (scrolled / height) * 100 : 0;
+    bar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+
+/* ---------- Scroll reveal ---------- */
+(function(){
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    }
+  }, { threshold: 0.12, rootMargin: '0px 0px -5% 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
+
+/* ---------- Stat counter (MCP 97M) ---------- */
+(function(){
+  const el = document.getElementById('mcpStat');
+  if (!el) return;
+  const target = parseFloat(el.dataset.target);
+  let started = false;
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.isIntersecting && !started) {
+        started = true;
+        const dur = 1800;
+        const t0 = performance.now();
+        function step(t) {
+          const p = Math.min(1, (t - t0) / dur);
+          const eased = 1 - Math.pow(1 - p, 3);
+          const val = (target * eased).toFixed(1);
+          el.textContent = val + 'M';
+          if (p < 1) requestAnimationFrame(step);
+          else el.textContent = target + 'M';
+        }
+        requestAnimationFrame(step);
+      }
+    }
+  }, { threshold: 0.4 });
+  io.observe(el);
+})();
+
+/* ---------- Particle canvas (Science section) ---------- */
+(function(){
+  const canvas = document.getElementById('particles');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const section = document.getElementById('s8');
+  let particles = [];
+  let w, h, running = false, rafId;
+
+  function resize() {
+    const rect = section.getBoundingClientRect();
+    w = canvas.width = section.offsetWidth;
+    h = canvas.height = section.offsetHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  function seed() {
+    particles = [];
+    const count = Math.min(90, Math.floor((w * h) / 22000));
+    for (let i = 0; i < count; i++) {
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45,
+        r: Math.random() * 1.8 + 0.8,
+        hue: 240 + Math.random() * 60
+      });
+    }
+  }
+  seed();
+
+  function tick() {
+    ctx.clearRect(0, 0, w, h);
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > w) p.vx *= -1;
+      if (p.y < 0 || p.y > h) p.vy *= -1;
+      ctx.beginPath();
+      ctx.fillStyle = 'hsla(' + p.hue + ', 80%, 75%, 0.7)';
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    // connect lines
+    ctx.lineWidth = 0.6;
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const d2 = dx*dx + dy*dy;
+        if (d2 < 14000) {
+          const a = 1 - d2 / 14000;
+          ctx.strokeStyle = 'rgba(196,160,255,' + (a * 0.3) + ')';
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.isIntersecting && !running) {
+        running = true;
+        resize(); seed();
+        tick();
+      } else if (!e.isIntersecting && running) {
+        running = false;
+        cancelAnimationFrame(rafId);
+      }
+    }
+  }, { threshold: 0.05 });
+  io.observe(section);
+})();
+
+/* ---------- Starfield (Space section) ---------- */
+(function(){
+  const field = document.getElementById('starfield');
+  if (!field) return;
+  const count = 160;
+  let built = false;
+  function build() {
+    if (built) return; built = true;
+    const frag = document.createDocumentFragment();
+    for (let i = 0; i < count; i++) {
+      const s = document.createElement('div');
+      s.className = 'star';
+      const size = Math.random() * 2.2 + 0.4;
+      s.style.width = size + 'px';
+      s.style.height = size + 'px';
+      s.style.left = (Math.random() * 100) + '%';
+      s.style.top = (Math.random() * 100) + '%';
+      s.style.animationDelay = (Math.random() * 4) + 's';
+      s.style.animationDuration = (3 + Math.random() * 4) + 's';
+      s.style.opacity = String(0.35 + Math.random() * 0.65);
+      frag.appendChild(s);
+    }
+    field.appendChild(frag);
+  }
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) if (e.isIntersecting) build();
+  }, { threshold: 0.05 });
+  io.observe(document.getElementById('s9'));
+})();
+</script>
+</body>
+</html>
