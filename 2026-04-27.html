@@ -3,297 +3,217 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>The Daily Brief — Sunday, April 26, 2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<title>The Daily Brief — Monday, April 27, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 <style>
-  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --cream: #f4ebd9; --navy: #0b1230; --crimson: #6a0f1a;
+    --terminal: #0c1a0c; --terminal-fg: #5dff7a; --ivory: #efe9dd;
+    --steel: #28425c; --gold: #f1bf3c; --indigo: #1a1860;
+    --space: #050507; --sage: #6e8a73; --ink: #14110f;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Inter', system-ui, sans-serif;
-    line-height: 1.5;
-    overflow-x: hidden;
-    background: #0a0a0a;
-    color: #111;
-  }
-  .progress {
-    position: fixed; top: 0; left: 0; height: 4px; width: 0%;
-    background: linear-gradient(90deg, #ff3b30, #ff9500, #ffcc00);
-    z-index: 9999; transition: width 0.05s linear;
-  }
-  .masthead {
-    padding: 6vh 6vw 8vh; background: #f6f1e7; color: #111;
-    border-bottom: 2px solid #111;
-  }
-  .masthead .top {
-    display: flex; justify-content: space-between; align-items: baseline;
-    font-family: 'Inter'; font-size: 0.78rem; letter-spacing: 0.18em;
-    text-transform: uppercase; padding-bottom: 1.5rem;
-    border-bottom: 1px solid #1118; margin-bottom: 2.5rem;
-  }
-  .masthead h1 {
-    font-family: 'Fraunces', serif; font-weight: 900;
-    font-size: clamp(3.5rem, 11vw, 10rem); line-height: 0.92;
-    letter-spacing: -0.04em; font-variation-settings: "opsz" 144;
-  }
-  .masthead h1 em { font-style: italic; font-weight: 300; color: #c1272d; }
-  .masthead .sub {
-    margin-top: 2rem; max-width: 720px;
-    font-family: 'Fraunces', serif; font-size: clamp(1.1rem, 1.6vw, 1.4rem);
-    font-weight: 400; line-height: 1.4; color: #333;
-  }
-  .masthead .meta {
-    margin-top: 3.5rem; display: flex; gap: 3rem; flex-wrap: wrap;
-    font-family: 'Inter'; font-size: 0.78rem; letter-spacing: 0.14em;
-    text-transform: uppercase; color: #555;
-  }
-  .masthead .meta strong { color: #111; display: block; font-size: 1rem; letter-spacing: 0; text-transform: none; font-family: 'Fraunces'; font-weight: 600; }
-
-  .spread {
-    min-height: 100vh; padding: 10vh 6vw; position: relative;
-    display: flex; flex-direction: column; justify-content: center;
-    overflow: hidden;
-  }
-  .spread .num {
-    font-family: 'Fraunces', serif; font-weight: 900;
-    font-size: clamp(8rem, 22vw, 22rem); line-height: 0.85;
-    letter-spacing: -0.06em; opacity: 0.12;
-    position: absolute; top: 6vh; right: 6vw; pointer-events: none;
-    font-variation-settings: "opsz" 144;
-  }
-  .spread .kicker {
-    font-family: 'Inter'; font-size: 0.78rem; font-weight: 600;
-    letter-spacing: 0.22em; text-transform: uppercase; opacity: 0.6;
-    margin-bottom: 1.5rem;
-  }
-  .spread h2 {
-    font-family: 'Fraunces', serif; font-weight: 800;
-    font-size: clamp(2.5rem, 6.5vw, 6rem); line-height: 1;
-    letter-spacing: -0.03em; max-width: 18ch;
-    font-variation-settings: "opsz" 144; margin-bottom: 2rem;
-  }
-  .spread h2 em { font-style: italic; font-weight: 400; }
-  .spread .body {
-    font-family: 'Fraunces', serif; font-size: clamp(1.15rem, 1.8vw, 1.6rem);
-    font-weight: 400; line-height: 1.5; max-width: 50ch;
-    margin-bottom: 3rem;
-  }
-  .spread .source {
-    display: inline-flex; align-items: center; gap: 0.6rem;
-    font-family: 'Inter'; font-weight: 600; font-size: 0.95rem;
-    letter-spacing: 0.05em; text-transform: uppercase;
-    text-decoration: none; padding: 1rem 1.5rem;
-    border: 2px solid currentColor; border-radius: 999px;
-    transition: all 0.25s ease; align-self: flex-start;
-    color: inherit;
-  }
-  .spread .source:hover { background: currentColor; }
-  .spread .source:hover span { color: var(--bg); }
-  .badge {
-    display: inline-flex; align-items: center; gap: 0.4rem;
-    background: #c1272d; color: #fff; font-family: 'Inter';
-    font-weight: 700; font-size: 0.72rem; letter-spacing: 0.18em;
-    text-transform: uppercase; padding: 0.5rem 0.9rem;
-    border-radius: 999px; margin-bottom: 1.4rem; align-self: flex-start;
-    box-shadow: 0 4px 16px rgba(193,39,45,0.4);
-  }
-  .spread .meta-line {
-    margin-top: 2.5rem; font-family: 'Inter'; font-size: 0.78rem;
-    letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.55;
-  }
-
-  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.9s cubic-bezier(.2,.7,.2,1), transform 0.9s cubic-bezier(.2,.7,.2,1); }
-  .reveal.in { opacity: 1; transform: translateY(0); }
-  .reveal.delay-1 { transition-delay: 0.12s; }
-  .reveal.delay-2 { transition-delay: 0.24s; }
-  .reveal.delay-3 { transition-delay: 0.36s; }
-  .reveal.delay-4 { transition-delay: 0.48s; }
-
-  .s1 { --bg:#f6f1e7; --fg:#111; background:var(--bg); color:var(--fg); }
-  .s2 { --bg:#0d1b2a; --fg:#f5f5f5; background:var(--bg); color:var(--fg); }
-  .s3 { --bg:#7a1e1e; --fg:#fff5e1; background:var(--bg); color:var(--fg); }
-  .s4 { --bg:#0d160d; --fg:#5cff5c; background:var(--bg); color:var(--fg); }
-  .s5 { --bg:#fbf8f0; --fg:#1a1a1a; background:var(--bg); color:var(--fg); }
-  .s6 { --bg:#3e5a78; --fg:#f0f4f8; background:var(--bg); color:var(--fg); }
-  .s7 { --bg:#f5c518; --fg:#0a0a0a; background:var(--bg); color:var(--fg); }
-  .s8 { --bg:#1e1b4b; --fg:#e0e7ff; background:var(--bg); color:var(--fg); }
-  .s9 { --bg:#050505; --fg:#f5f5f5; background:var(--bg); color:var(--fg); background-image: radial-gradient(circle at 20% 30%, #1a1a3a 0%, transparent 40%), radial-gradient(circle at 80% 70%, #2a1a3a 0%, transparent 40%); }
-  .s10 { --bg:#86a585; --fg:#1a261a; background:var(--bg); color:var(--fg); }
-
-  .rule {
-    width: 80px; height: 4px; background: currentColor;
-    margin-bottom: 2rem; opacity: 0.85;
-  }
-
-  .footer {
-    padding: 8vh 6vw; background: #0a0a0a; color: #888;
-    text-align: center; font-family: 'Inter'; font-size: 0.85rem;
-    letter-spacing: 0.1em;
-  }
-  .footer .big {
-    font-family: 'Fraunces', serif; color: #f5f5f5; font-weight: 800;
-    font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.02em;
-    margin-bottom: 1.5rem; line-height: 1.05;
-  }
-  .footer a { color: #f5c518; text-decoration: none; }
-
-  @media (max-width: 700px) {
-    .spread { padding: 8vh 6vw; }
-    .spread .num { top: 3vh; font-size: 9rem; }
-    .masthead .meta { gap: 1.5rem; }
-  }
+  body { font-family: 'Inter', system-ui, sans-serif; background: #0a0a0a; color: var(--ink); overflow-x: hidden; }
+  .progress { position: fixed; top: 0; left: 0; height: 4px; width: 0%; background: linear-gradient(90deg, #f1bf3c, #e84a4a); z-index: 1000; transition: width 0.08s linear; }
+  .masthead { background: var(--cream); color: var(--ink); padding: 8vh 6vw 6vh; border-bottom: 6px double var(--ink); }
+  .masthead .kicker { font-size: 0.75rem; letter-spacing: 0.4em; text-transform: uppercase; font-weight: 600; opacity: 0.6; }
+  .masthead h1 { font-family: 'Fraunces', serif; font-weight: 900; font-size: clamp(4rem, 13vw, 11rem); line-height: 0.88; letter-spacing: -0.04em; margin: 0.2em 0 0.4em; font-style: italic; }
+  .masthead .meta { display: flex; flex-wrap: wrap; gap: 2rem; font-size: 0.85rem; letter-spacing: 0.15em; text-transform: uppercase; border-top: 1px solid var(--ink); padding-top: 1.5rem; margin-top: 1rem; }
+  .masthead .meta span { font-weight: 500; }
+  .spread { min-height: 100vh; padding: 12vh 6vw; position: relative; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+  .num { font-family: 'Fraunces', serif; font-weight: 300; font-size: clamp(8rem, 22vw, 22rem); line-height: 0.85; opacity: 0.18; position: absolute; pointer-events: none; user-select: none; }
+  .badge { display: inline-block; background: #e02828; color: white; padding: 0.35rem 0.85rem; border-radius: 999px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem; box-shadow: 0 6px 20px rgba(224,40,40,0.4); }
+  .tag { font-size: 0.72rem; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 600; opacity: 0.7; margin-bottom: 1.2rem; }
+  .headline { font-family: 'Fraunces', serif; font-weight: 800; font-size: clamp(2.6rem, 7.5vw, 6.5rem); line-height: 0.95; letter-spacing: -0.025em; margin-bottom: 1.5rem; max-width: 18ch; }
+  .summary { font-size: clamp(1.15rem, 1.7vw, 1.5rem); line-height: 1.5; max-width: 60ch; font-weight: 400; }
+  .source { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 2.5rem; font-size: 0.95rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; padding: 0.9rem 1.4rem; border: 2px solid currentColor; border-radius: 4px; transition: all 0.25s ease; color: inherit; }
+  .source:hover { transform: translate(-2px,-2px); box-shadow: 4px 4px 0 currentColor; }
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 1.1s cubic-bezier(.2,.7,.2,1), transform 1.1s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+  .reveal.delay-1 { transition-delay: 0.1s; } .reveal.delay-2 { transition-delay: 0.22s; } .reveal.delay-3 { transition-delay: 0.34s; }
+  .s01 { background: var(--cream); color: var(--ink); }
+  .s01 .num { top: -2vh; right: 4vw; color: var(--ink); }
+  .s02 { background: var(--navy); color: #e8e6f3; }
+  .s02 .num { bottom: -6vh; left: 2vw; color: #e8e6f3; }
+  .s02 .headline { font-style: italic; }
+  .s03 { background: var(--crimson); color: #f6e6e0; }
+  .s03 .num { top: 4vh; left: 3vw; color: #f6e6e0; }
+  .s03 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4vw; align-items: center; }
+  @media (max-width: 800px){ .s03 .grid { grid-template-columns: 1fr; } }
+  .s03 .stat { font-family:'Fraunces',serif; font-weight:900; font-size: clamp(5rem,16vw,14rem); line-height:0.85; letter-spacing:-0.04em; }
+  .s03 .stat small { font-family:'Inter',sans-serif; font-weight:600; font-size:1rem; letter-spacing:0.25em; text-transform:uppercase; display:block; margin-top:1rem; opacity:0.7; }
+  .s04 { background: var(--terminal); color: var(--terminal-fg); }
+  .s04 .num { color: var(--terminal-fg); top: 6vh; right: 4vw; opacity: 0.25; }
+  .s04 .terminal-prompt { font-family: ui-monospace, Menlo, monospace; opacity:0.85; font-size:0.9rem; margin-bottom:1.5rem; }
+  .s05 { background: var(--ivory); color: #2a1f10; }
+  .s05 .num { color: #2a1f10; bottom: 0; right: 4vw; }
+  .s05 .pull { font-family:'Fraunces',serif; font-style:italic; font-weight:300; font-size:clamp(1.3rem,2vw,1.7rem); line-height:1.4; max-width:50ch; border-left:3px solid #2a1f10; padding-left:1.5rem; margin-top:2rem; opacity:0.8; }
+  .s06 { background: var(--steel); color: #e7eef7; }
+  .s06 .num { color: #e7eef7; top: 4vh; right: 4vw; }
+  .s06 .table { margin-top:2rem; border-top:1px solid #e7eef7; max-width: 64ch; }
+  .s06 .table .row { display:grid; grid-template-columns: 1fr 2fr; gap:1.5rem; padding:1rem 0; border-bottom:1px solid rgba(231,238,247,0.25); font-size:0.95rem; }
+  .s06 .table .row strong { font-family:'Fraunces',serif; font-weight:600; }
+  .s07 { background: var(--gold); color: #2c1d04; }
+  .s07 .num { color: #2c1d04; top: 2vh; left: 3vw; }
+  .s07 .headline { -webkit-text-stroke: 2px #2c1d04; color: transparent; }
+  .s07 .summary { font-weight: 500; }
+  .s08 { background: var(--indigo); color: #e3e0ff; }
+  .s08 .num { color: #e3e0ff; bottom: -4vh; right: 3vw; }
+  .s08 .stars { position:absolute; inset:0; pointer-events:none; opacity:0.45; }
+  .s08 .stars span { position:absolute; width:2px; height:2px; background:#fff; border-radius:50%; box-shadow:0 0 6px #fff; }
+  .s09 { background: var(--space); color: #f2f2f2; border-top: 1px solid #222; border-bottom: 1px solid #222; }
+  .s09 .num { color: #f2f2f2; top: 4vh; right: 4vw; }
+  .s09 .headline { background: linear-gradient(120deg,#fff 0%, #f1bf3c 60%, #e02828 100%); -webkit-background-clip: text; background-clip:text; color: transparent; }
+  .s10 { background: var(--sage); color: #0d1f12; }
+  .s10 .num { color: #0d1f12; top: -2vh; right: 4vw; }
+  .colophon { background: #050505; color: #aaa; padding: 8vh 6vw; text-align: center; font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; }
+  .colophon strong { color: #fff; font-family:'Fraunces',serif; font-weight:600; font-style:italic; letter-spacing:0; text-transform:none; font-size:1.4rem; display:block; margin-bottom:1rem; }
 </style>
 </head>
 <body>
-
 <div class="progress" id="progress"></div>
-
 <header class="masthead">
-  <div class="top">
-    <span>The Daily Brief</span>
-    <span>Sunday Edition</span>
-    <span>Vol. I &middot; No. 117</span>
-  </div>
-  <h1 class="reveal">Ten things<br/>you should<br/><em>actually</em> know.</h1>
-  <p class="sub reveal delay-1">A curated, opinionated brief of the most important news from the last 48 hours &mdash; built for Spencer, served fresh each morning. No listicles. No "best of." Just what happened, why it matters, and where to read more.</p>
-  <div class="meta reveal delay-2">
-    <div><strong>Sunday, April 26, 2026</strong>EDITION DATE</div>
-    <div><strong>10</strong>STORIES TODAY</div>
-    <div><strong>4</strong>FLAGGED FOR YOU</div>
-    <div><strong>~7 min</strong>READ TIME</div>
+  <div class="kicker">Vol. I &middot; Edition 27.04 &middot; For Spencer Lowder</div>
+  <h1>The Daily Brief</h1>
+  <div class="meta">
+    <span>Monday, April 27, 2026</span>
+    <span>Editorial Bulletin</span>
+    <span>10 Stories</span>
+    <span>Last 48 Hours</span>
   </div>
 </header>
 
-<section class="spread s1">
+<section class="spread s01">
   <div class="num">01</div>
-  <div class="reveal"><div class="badge">&#128681; Applies to You</div></div>
-  <div class="kicker reveal delay-1">AI &middot; Capital &middot; Apr 24</div>
-  <h2 class="reveal delay-1">Google bets <em>$40 billion</em> on Anthropic.</h2>
-  <div class="rule reveal delay-2"></div>
-  <p class="body reveal delay-2">Google will invest up to $40B in Anthropic &mdash; $10B now, with the rest tied to performance milestones &mdash; at a $380B valuation. Anthropic's run-rate revenue has rocketed from ~$9B at the end of 2025 to over $30B today, with more than 1,000 customers each paying north of $1M annually. The company says the deal helps cover "inevitable strain" on infrastructure as Claude demand keeps doubling.</p>
-  <a class="source reveal delay-3" href="https://www.cnbc.com/2026/04/24/google-to-invest-up-to-40-billion-in-anthropic-as-search-giant-spreads-its-ai-bets.html" target="_blank" rel="noopener"><span>Source: CNBC &#8599;</span></a>
-  <div class="meta-line reveal delay-4">CNBC &middot; April 24, 2026</div>
+  <div class="reveal"><div class="badge">&#x1F6A9; Applies to You</div></div>
+  <div class="reveal delay-1"><div class="tag">AI &middot; Investment</div></div>
+  <h2 class="headline reveal delay-1">Google commits up to $40 billion to Anthropic.</h2>
+  <p class="summary reveal delay-2">Google announced it will invest up to $40 billion in Anthropic, with $10B upfront and the remainder tied to performance milestones. The deal lands at a $380B valuation and deepens Anthropic's compute partnership with Google and Broadcom &mdash; meaning the Claude you live in is now backstopped by serious capital and serious silicon.</p>
+  <a class="source reveal delay-3" href="https://www.cnbc.com/2026/04/24/google-to-invest-up-to-40-billion-in-anthropic-as-search-giant-spreads-its-ai-bets.html" target="_blank" rel="noopener">Source &#8599;</a>
 </section>
 
-<section class="spread s2">
+<section class="spread s02">
   <div class="num">02</div>
-  <div class="reveal"><div class="badge">&#128681; Applies to You</div></div>
-  <div class="kicker reveal delay-1">AI Models &middot; China &middot; Apr 24</div>
-  <h2 class="reveal delay-1">DeepSeek V4 closes the gap &mdash; <em>at one-tenth the price.</em></h2>
-  <div class="rule reveal delay-2"></div>
-  <p class="body reveal delay-2">DeepSeek dropped V4-Pro (1.6T total / 49B active params) and V4-Flash (284B / 13B), both with 1M-token context windows. The Pro version trails only Gemini-Pro-3.1 on benchmarks. Flash runs at $0.14/M input tokens &mdash; about 35&times; cheaper than Claude Opus 4.7. Notably, DeepSeek says V4 is optimized for use with Claude Code and other agentic tools, which makes the open-source release directly competitive with the closed frontier.</p>
-  <a class="source reveal delay-3" href="https://techcrunch.com/2026/04/24/deepseek-previews-new-ai-model-that-closes-the-gap-with-frontier-models/" target="_blank" rel="noopener"><span>Source: TechCrunch &#8599;</span></a>
-  <div class="meta-line reveal delay-4">TechCrunch &middot; April 24, 2026</div>
+  <div class="reveal"><div class="tag">Design Tools</div></div>
+  <h2 class="headline reveal delay-1">Figma rebuilt the engine. Vector editing is 10&times; faster.</h2>
+  <p class="summary reveal delay-2">In an April 23 update, Figma shipped a major performance overhaul: vector editing up to 10&times; faster, frame rates 4&times; smoother, faster load times, and 92% fewer memory warnings. Same app, fundamentally different feel &mdash; designers stuck in heavy files just got an unannounced raise on their hardware.</p>
+  <a class="source reveal delay-3" href="https://www.figma.com/release-notes/" target="_blank" rel="noopener">Source &#8599;</a>
 </section>
 
-<section class="spread s3">
+<section class="spread s03">
   <div class="num">03</div>
-  <div class="kicker reveal">Space &middot; Astrobiology &middot; Apr 24</div>
-  <h2 class="reveal delay-1">Mars just gave up <em>seven new molecules.</em></h2>
-  <div class="rule reveal delay-2"></div>
-  <p class="body reveal delay-2">Curiosity's analysis of "Mary Anning 3" &mdash; a clay-rich rock drilled on Mount Sharp &mdash; turned up 21 carbon-containing molecules, seven detected on Mars for the first time. Among them: a nitrogen heterocycle (a precursor to RNA/DNA) and benzothiophene, a sulfur-bearing compound found in many meteorites. The paper, in Nature Communications, doesn't prove biology &mdash; but it confirms ancient Mars had the chemistry to support it.</p>
-  <a class="source reveal delay-3" href="https://www.jpl.nasa.gov/news/nasas-curiosity-finds-organic-molecules-never-seen-before-on-mars/" target="_blank" rel="noopener"><span>Source: NASA / JPL &#8599;</span></a>
-  <div class="meta-line reveal delay-4">NASA JPL &middot; April 24, 2026</div>
+  <div class="grid">
+    <div>
+      <div class="reveal"><div class="tag">Privacy Law</div></div>
+      <h2 class="headline reveal delay-1">A federal US privacy law just got a real bill.</h2>
+      <p class="summary reveal delay-2">On April 22, the House Energy &amp; Commerce Committee introduced the SECURE Data Act, which would replace the state-by-state privacy patchwork with one federal standard. It requires opt-in consent for sensitive data (health, geolocation) and parental consent for teens 13&ndash;15. If it passes, every US privacy compliance regime built since 2018 gets rewritten.</p>
+      <a class="source reveal delay-3" href="https://www.hunton.com/privacy-and-cybersecurity-law-blog/house-republicans-introduce-comprehensive-federal-privacy-bill-secure-data-act" target="_blank" rel="noopener">Source &#8599;</a>
+    </div>
+    <div class="reveal delay-2">
+      <div class="stat">50&rarr;1<small>State laws &rarr; federal preemption</small></div>
+    </div>
+  </div>
 </section>
 
-<section class="spread s4">
+<section class="spread s04">
   <div class="num">04</div>
-  <div class="reveal"><div class="badge">&#128681; Applies to You</div></div>
-  <div class="kicker reveal delay-1">$ CYBER &middot; SUPPLY CHAIN &middot; APR 23</div>
-  <h2 class="reveal delay-1">Vercel breached. <em>The entry point was an AI tool.</em></h2>
-  <div class="rule reveal delay-2"></div>
-  <p class="body reveal delay-2">Attackers compromised Context.ai &mdash; a third-party AI tool used by a Vercel employee &mdash; pivoted into the employee's Google Workspace account, then into Vercel itself, where they decrypted non-sensitive environment variables for a subset of customers. Vercel has notified affected accounts and recommended credential rotation. A "ShinyHunters" lookalike is selling stolen data for $2M on BreachForums. The supply-chain pattern (AI vendor &rarr; SSO &rarr; production) is the story.</p>
-  <a class="source reveal delay-3" href="https://techcrunch.com/2026/04/20/app-host-vercel-confirms-security-incident-says-customer-data-was-stolen-via-breach-at-context-ai/" target="_blank" rel="noopener"><span>Source: TechCrunch &#8599;</span></a>
-  <div class="meta-line reveal delay-4">TechCrunch &middot; April 20&ndash;23, 2026</div>
+  <div class="reveal"><div class="badge">&#x1F6A9; Applies to You</div></div>
+  <div class="reveal delay-1"><div class="terminal-prompt">$ anthropic release --model claude-opus-4.7</div></div>
+  <h2 class="headline reveal delay-1">Anthropic ships Claude Opus 4.7 &mdash; and is internally testing &ldquo;Mythos.&rdquo;</h2>
+  <p class="summary reveal delay-2">Anthropic released Claude Opus 4.7 on April 16, billed as materially better at software engineering, instruction following, and finishing real-world work. The bigger story: Anthropic is internally testing a frontier model nicknamed &ldquo;Claude Mythos,&rdquo; described as a step-change in capabilities and possibly landing in Q2. Run-rate revenue is now $30B+, up from ~$9B at end of 2025.</p>
+  <a class="source reveal delay-3" href="https://www.cnbc.com/2026/04/16/anthropic-claude-opus-4-7-model-mythos.html" target="_blank" rel="noopener">Source &#8599;</a>
 </section>
 
-<section class="spread s5">
+<section class="spread s05">
   <div class="num">05</div>
-  <div class="kicker reveal">Design &middot; Tooling &middot; Apr 23</div>
-  <h2 class="reveal delay-1">Figma made everything <em>10&times; faster</em> &mdash; and shipped Make on mobile.</h2>
-  <div class="rule reveal delay-2"></div>
-  <p class="body reveal delay-2">Figma's April update includes vector editing up to 10&times; faster, 4&times; smoother frame rates, and 92% fewer memory warnings. Bigger picture: Figma Make is now on iOS and Android for previewing and sharing prototypes, and a new "Make AI Administration" lets enterprise admins purchase and allocate AI credits &mdash; a quiet acknowledgement that AI usage is now a budgeted line item, not a feature flag.</p>
-  <a class="source reveal delay-3" href="https://www.figma.com/release-notes/" target="_blank" rel="noopener"><span>Source: Figma &#8599;</span></a>
-  <div class="meta-line reveal delay-4">Figma Release Notes &middot; April 23, 2026</div>
+  <div class="reveal"><div class="tag">Space Science</div></div>
+  <h2 class="headline reveal delay-1">A NASA scientist says a &ldquo;fifth force&rdquo; may be hiding in our solar system.</h2>
+  <p class="summary reveal delay-2">In a study published April 23, a NASA researcher proposes that anomalies in solar-system dynamics could be explained by a previously unknown fundamental force &mdash; beyond gravity, electromagnetism, and the two nuclear forces. It's a single-paper claim, not consensus, but it's the kind of finding that, if replicated, rewrites a chapter of physics.</p>
+  <p class="pull reveal delay-2">A fifth fundamental force would be the kind of result that ends careers or starts revolutions.</p>
+  <a class="source reveal delay-3" href="https://www.sciencedaily.com/releases/2026/04/260423031528.htm" target="_blank" rel="noopener">Source &#8599;</a>
 </section>
 
-<section class="spread s6">
+<section class="spread s06">
   <div class="num">06</div>
-  <div class="kicker reveal">Privacy &middot; US Policy &middot; Apr 22</div>
-  <h2 class="reveal delay-1">A federal privacy bill, <em>finally.</em></h2>
-  <div class="rule reveal delay-2"></div>
-  <p class="body reveal delay-2">House Republicans introduced the SECURE Data Act, which would replace the state-by-state patchwork of consumer privacy laws (CCPA, VCDPA, etc.) with a single federal standard. It mandates opt-in consent for sensitive data &mdash; health, geolocation &mdash; and requires parental consent before collecting personal data from anyone aged 13&ndash;15. The familiar fight ahead: preemption of stronger state laws like California's CCPA. Watch the markup.</p>
-  <a class="source reveal delay-3" href="https://www.hunton.com/privacy-and-cybersecurity-law-blog/house-republicans-introduce-comprehensive-federal-privacy-bill-secure-data-act" target="_blank" rel="noopener"><span>Source: Hunton &#8599;</span></a>
-  <div class="meta-line reveal delay-4">Hunton Privacy Blog &middot; April 22, 2026</div>
+  <div class="reveal"><div class="tag">Cybersecurity</div></div>
+  <h2 class="headline reveal delay-1">A bad week for breached databases.</h2>
+  <p class="summary reveal delay-2">Privacy Guides' April 17&ndash;23 roundup catalogs three notable incidents this week alone. The list reads like a survey of how brittle the modern stack still is &mdash; the company name in your inbox is rarely the company that lost the data.</p>
+  <div class="table reveal delay-2">
+    <div class="row"><strong>Rituals</strong><span>Cosmetics retailer; names, DOBs, addresses, phone numbers exposed.</span></div>
+    <div class="row"><strong>Vercel</strong><span>Cloud dev platform &mdash; threat actors claim breach, are selling stolen data.</span></div>
+    <div class="row"><strong>Seiko</strong><span>&ldquo;Press Lounge&rdquo; page defaced; attackers claim Shopify DB stolen.</span></div>
+  </div>
+  <a class="source reveal delay-3" href="https://www.privacyguides.org/news/2026/04/24/data-breach-roundup-apr-17-23-2026/" target="_blank" rel="noopener">Source &#8599;</a>
 </section>
 
-<section class="spread s7">
+<section class="spread s07">
   <div class="num">07</div>
-  <div class="kicker reveal">Creative AI &middot; Apr 24</div>
-  <h2 class="reveal delay-1">Adobe Firefly learns to <em>follow your hand.</em></h2>
-  <div class="rule reveal delay-2"></div>
-  <p class="body reveal delay-2">Firefly's new "AI Markup" lets you mark up an image with text prompts, freehand brush strokes, and region selection &mdash; then generate edits that actually respect what you drew. Paired with the new Design Intelligence layer, which encodes brand rules and Style IDs across Adobe apps, the pitch is clear: stop generating from scratch, start directing. It's Adobe's most coherent answer yet to "what does Firefly do that ChatGPT image-gen doesn't?"</p>
-  <a class="source reveal delay-3" href="https://www.adobe.com/products/firefly.html" target="_blank" rel="noopener"><span>Source: Adobe &#8599;</span></a>
-  <div class="meta-line reveal delay-4">Adobe Newsroom &middot; April 2026</div>
+  <div class="reveal"><div class="badge">&#x1F6A9; Applies to You</div></div>
+  <div class="reveal delay-1"><div class="tag">Creator Economy</div></div>
+  <h2 class="headline reveal delay-1">YouTube's creator-brand pipeline went programmatic.</h2>
+  <p class="summary reveal delay-2">On April 21, impact.com became an early adopter of the new YouTube Creator Partnerships API &mdash; letting brands discover creators, manage sponsorships, and measure performance through verified, creator-consented data. This is the BrandConnect successor wired into Google Ads and DV360. For a creator at your tier, and a conference operator selling sponsorships, this is the new infrastructure layer to understand.</p>
+  <a class="source reveal delay-3" href="https://www.exchangewire.com/blog/2026/04/21/impact-com-expands-youtube-collaboration-with-creator-partnerships-api-adoption/" target="_blank" rel="noopener">Source &#8599;</a>
 </section>
 
-<section class="spread s8">
+<section class="spread s08">
   <div class="num">08</div>
-  <div class="reveal"><div class="badge">&#128681; Applies to You</div></div>
-  <div class="kicker reveal delay-1">Subscriptions &middot; Pricing &middot; Apr 21</div>
-  <h2 class="reveal delay-1">Anthropic yanked Claude Code from Pro. Then <em>un-yanked it</em> in 24 hours.</h2>
-  <div class="rule reveal delay-2"></div>
-  <p class="body reveal delay-2">On April 21, Anthropic quietly removed Claude Code from the $20 Pro plan, raising the entry point to Max 5x at $100/month. The backlash was immediate, and within 24 hours the Claude Code checkbox was back on the Pro pricing page. In the same week, Anthropic also fixed a regression that had silently degraded Claude Code's coding quality (caching bug, lower default reasoning effort) and reset usage limits for affected subscribers.</p>
-  <a class="source reveal delay-3" href="https://www.wheresyoured.at/news-anthropic-removes-pro-cc/" target="_blank" rel="noopener"><span>Source: Where's Your Ed At &#8599;</span></a>
-  <div class="meta-line reveal delay-4">Where's Your Ed At &middot; April 21, 2026</div>
+  <div class="stars" id="stars"></div>
+  <div class="reveal"><div class="tag">Mars &middot; Astrobiology</div></div>
+  <h2 class="headline reveal delay-1">Curiosity finds seven new organic molecules on Mars.</h2>
+  <p class="summary reveal delay-2">Announced April 21: NASA's Curiosity rover detected seven previously undetected organic molecules in Martian rock &mdash; including naphthalene, methylnaphthalene, and methyl benzoate. Not life, but the kind of carbon chemistry that makes the question harder to brush off. Each new molecule narrows the gap between &ldquo;could have been habitable&rdquo; and &ldquo;was.&rdquo;</p>
+  <a class="source reveal delay-3" href="https://en.wikipedia.org/wiki/2026_in_science" target="_blank" rel="noopener">Source &#8599;</a>
 </section>
 
-<section class="spread s9">
+<section class="spread s09">
   <div class="num">09</div>
-  <div class="kicker reveal">Politics &middot; Health &middot; Apr 24</div>
-  <h2 class="reveal delay-1">Netanyahu had cancer surgery &mdash; <em>and didn't tell anyone.</em></h2>
-  <div class="rule reveal delay-2"></div>
-  <p class="body reveal delay-2">Israeli Prime Minister Benjamin Netanyahu disclosed Thursday that he was diagnosed with early-stage prostate cancer and underwent successful surgery, but said he hid the diagnosis throughout the active phase of the Iran war. The admission lands during fragile US-Iran ceasefire talks in Islamabad &mdash; and reignites a decades-old debate about how much voters are owed when their head of state is under the knife during wartime.</p>
-  <a class="source reveal delay-3" href="https://www.cnn.com/2026/04/24/world/live-news/iran-war-trump-israel-lebanon" target="_blank" rel="noopener"><span>Source: CNN &#8599;</span></a>
-  <div class="meta-line reveal delay-4">CNN &middot; April 24, 2026</div>
+  <div class="reveal"><div class="tag">Climate Science</div></div>
+  <h2 class="headline reveal delay-1">The Atlantic's conveyor belt is weakening faster than we thought.</h2>
+  <p class="summary reveal delay-2">A study published April 15 in Science Advances projects the Atlantic Meridional Overturning Circulation (AMOC) will weaken 42&ndash;58% by 2100 &mdash; significantly more than prior estimates. The most realistic models in the analysis indicate a high probability of eventual collapse. AMOC is the system that, among other things, keeps Northern Europe livable; this is not a small revision.</p>
+  <a class="source reveal delay-3" href="https://en.wikipedia.org/wiki/2026_in_science" target="_blank" rel="noopener">Source &#8599;</a>
 </section>
 
 <section class="spread s10">
   <div class="num">10</div>
-  <div class="kicker reveal">Weather &middot; US &middot; Apr 24</div>
-  <h2 class="reveal delay-1">Tornadoes carve <em>a path through Oklahoma.</em></h2>
-  <div class="rule reveal delay-2"></div>
-  <p class="body reveal delay-2">A line of tornadoes tore across Oklahoma Friday night as historic wildfires continued burning out of control elsewhere in the central United States. The same news cycle: the Justice Department officially ended its criminal probe of former Fed Chair Jerome Powell, and Labor Secretary Lori Chavez-DeRemer became the third Trump cabinet member to depart this term, amid misconduct accusations. A heavy news Friday, told quickly because there's a lot of it.</p>
-  <a class="source reveal delay-3" href="https://www.nbcnews.com/nightly-news-netcast/video/nbc-nightly-news-full-episode-april-24-262091333534" target="_blank" rel="noopener"><span>Source: NBC News &#8599;</span></a>
-  <div class="meta-line reveal delay-4">NBC Nightly News &middot; April 24, 2026</div>
+  <div class="reveal"><div class="tag">Design Tools &middot; Mobile</div></div>
+  <h2 class="headline reveal delay-1">Figma Make moves onto your phone.</h2>
+  <p class="summary reveal delay-2">As of April 24, Figma's prompt-to-prototype tool &ldquo;Make&rdquo; is available inside the Figma mobile app on iOS and Android &mdash; preview a Make on your phone, feel it with real gestures and constraints, and share for review without round-tripping through a laptop. The era of &ldquo;looks fine on desktop, broken on phone&rdquo; gets a little harder to defend.</p>
+  <a class="source reveal delay-3" href="https://www.figma.com/release-notes/" target="_blank" rel="noopener">Source &#8599;</a>
 </section>
 
-<footer class="footer">
-  <div class="big">That's the brief.</div>
-  <div>Compiled Sunday, April 26, 2026 &middot; For Spencer Lowder &middot; <a href="https://spence1a.github.io/NewsPaper/">spence1a.github.io/NewsPaper</a></div>
+<footer class="colophon">
+  <strong>The Daily Brief</strong>
+  Curated for Spencer Lowder &middot; Monday, April 27, 2026
 </footer>
 
 <script>
   const progress = document.getElementById('progress');
-  function updateProgress() {
+  function updateProgress(){
     const h = document.documentElement;
-    const scrolled = h.scrollTop / (h.scrollHeight - h.clientHeight);
-    progress.style.width = (scrolled * 100) + '%';
+    const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    progress.style.width = Math.min(100, Math.max(0, scrolled)) + '%';
   }
-  window.addEventListener('scroll', updateProgress, { passive: true });
+  document.addEventListener('scroll', updateProgress, { passive: true });
   updateProgress();
-
   const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('in');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.18, rootMargin: '0px 0px -8% 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  (function(){
+    const c = document.getElementById('stars');
+    if (!c) return;
+    for (let i=0;i<70;i++){
+      const s = document.createElement('span');
+      s.style.left = (Math.random()*100)+'%';
+      s.style.top = (Math.random()*100)+'%';
+      const sz = (1+Math.random()*2.5)+'px';
+      s.style.width = sz; s.style.height = sz;
+      s.style.opacity = (0.3+Math.random()*0.7);
+      c.appendChild(s);
+    }
+  })();
 </script>
-
 </body>
 </html>
