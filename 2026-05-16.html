@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — Friday, May 15, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F5F0E8;
+    --navy: #0D1B2A;
+    --crimson: #8B1A1A;
+    --terminal: #0A2A0A;
+    --ivory: #FAFAF2;
+    --steel: #1C3A52;
+    --gold: #F5C842;
+    --indigo: #1A1A5E;
+    --space: #050508;
+    --sage: #2D4A2D;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* PROGRESS BAR */
+  #progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    width: 0%;
+    background: linear-gradient(90deg, #FF4444, #FF8800, #FFCC00);
+    z-index: 1000;
+    transition: width 0.1s linear;
+  }
+
+  /* MASTHEAD */
+  .masthead {
+    background: #F5F0E8;
+    border-bottom: 3px solid #111;
+    padding: 2rem 4rem;
+    text-align: center;
+    position: relative;
+  }
+  .masthead-kicker {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 0.5rem;
+  }
+  .masthead-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 900;
+    color: #111;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+  .masthead-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #555;
+    margin-top: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .masthead-rule {
+    border: none;
+    border-top: 1px solid #ccc;
+    margin: 1.5rem 0 0.5rem;
+  }
+  .masthead-tagline {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: #777;
+  }
+
+  /* SPREAD BASE */
+  .spread {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(3rem, 8vw, 8rem) clamp(2rem, 6vw, 8rem);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .spread.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* COLOR THEMES */
+  .spread-cream   { background: var(--cream); color: #111; }
+  .spread-navy    { background: var(--navy); color: #F0EDE5; }
+  .spread-crimson { background: var(--crimson); color: #F5EAE0; }
+  .spread-terminal{ background: var(--terminal); color: #00FF41; }
+  .spread-ivory   { background: var(--ivory); color: #222; border-top: 1px solid #ddd; }
+  .spread-steel   { background: var(--steel); color: #D0E4F0; }
+  .spread-gold    { background: var(--gold); color: #1A1000; }
+  .spread-indigo  { background: var(--indigo); color: #C8C8FF; }
+  .spread-space   { background: var(--space); color: #CCCCDD; }
+  .spread-sage    { background: var(--sage); color: #D0E8D0; }
+
+  /* SECTION NUMBER */
+  .section-number {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(6rem, 15vw, 14rem);
+    font-weight: 900;
+    line-height: 1;
+    opacity: 0.08;
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* APPLIES BADGE */
+  .applies-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #CC0000;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border-radius: 2px;
+    margin-bottom: 1.5rem;
+    width: fit-content;
+  }
+  .spread-terminal .applies-badge { background: #00FF41; color: #000; }
+  .spread-gold .applies-badge { background: #111; color: #FFCC00; }
+
+  /* CATEGORY */
+  .category {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 1rem;
+  }
+
+  /* HEADLINE */
+  .headline {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.2rem, 5.5vw, 5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    max-width: 18ch;
+    margin-bottom: 2rem;
+  }
+
+  /* SUMMARY */
+  .summary {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-weight: 400;
+    line-height: 1.7;
+    max-width: 65ch;
+    opacity: 0.85;
+    margin-bottom: 2rem;
+  }
+
+  /* SOURCE LINK */
+  .source-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    border-bottom: 2px solid currentColor;
+    padding-bottom: 2px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .source-link:hover { opacity: 1; }
+
+  /* LAYOUTS: alternating */
+  .layout-left  { align-items: flex-start; }
+  .layout-right { align-items: flex-end; text-align: right; }
+  .layout-right .headline,
+  .layout-right .summary { max-width: 65ch; }
+  .layout-center { align-items: center; text-align: center; }
+  .layout-center .headline,
+  .layout-center .summary { max-width: 100%; }
+
+  /* DECORATIVE HORIZONTAL RULE */
+  .spread-rule {
+    width: 4rem;
+    height: 3px;
+    background: currentColor;
+    opacity: 0.3;
+    margin-bottom: 1.5rem;
+  }
+  .layout-right .spread-rule { margin-left: auto; }
+  .layout-center .spread-rule { margin: 0 auto 1.5rem; }
+
+  /* TERMINAL SPECIFIC */
+  .spread-terminal .headline {
+    font-family: 'Courier New', monospace;
+    font-size: clamp(1.8rem, 4vw, 3.5rem);
+    text-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+  }
+  .spread-terminal .category {
+    font-family: 'Courier New', monospace;
+    color: #00FF41;
+  }
+  .spread-terminal .section-number {
+    color: #00FF41;
+  }
+
+  /* SPACE SPECIFIC */
+  .spread-space .headline {
+    background: linear-gradient(135deg, #8888FF, #CCCCFF, #FFFFFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* GOLD SPECIFIC */
+  .spread-gold .category { color: #7A5000; }
+  .spread-gold .source-link { color: #3A2000; }
+
+  /* SCROLL HINT AT BOTTOM OF MASTHEAD */
+  .scroll-hint {
+    position: absolute;
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #999;
+    animation: bounce 2s infinite;
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* FOOTER */
+  .footer {
+    background: #111;
+    color: #555;
+    padding: 3rem 4rem;
+    text-align: center;
+  }
+  .footer p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    line-height: 2;
+  }
+  .footer strong { color: #999; }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-kicker">Spencer Lowder's Morning Brief</div>
+  <h1 class="masthead-title">The Daily<br>Brief</h1>
+  <hr class="masthead-rule">
+  <div class="masthead-date">Friday, May 15, 2026 &nbsp;·&nbsp; 10 Stories &nbsp;·&nbsp; Vol. MMXXVI</div>
+  <div class="masthead-tagline">"All the news that's fit to brief"</div>
+  <div class="scroll-hint">↓ scroll</div>
+</header>
+
+<!-- STORY 01 — ANTHROPIC $30B -->
+<section class="spread spread-cream layout-left">
+  <div class="section-number">01</div>
+  <div class="applies-badge">🚩 Applies to You</div>
+  <div class="category">Artificial Intelligence · Finance</div>
+  <div class="spread-rule"></div>
+  <h2 class="headline">Anthropic Eyes $900 Billion Valuation in $30B Mega-Round</h2>
+  <p class="summary">Bloomberg reported this week that Anthropic — the company behind Claude — is in talks to raise at least $30 billion in fresh capital at a staggering $900 billion pre-money valuation, which would surpass OpenAI's $852 billion figure. Fueled by annualized revenue now exceeding $44 billion and over 1,000 enterprise customers each spending more than $1 million annually, the deal could close by end of May. The round would mark a tripling of Anthropic's valuation from its $380 billion Series G close in February 2026 alone.</p>
+  <a class="source-link" href="https://www.bloomberg.com/news/articles/2026-05-12/anthropic-in-talks-to-raise-30-billion-at-900-billion-valuation" target="_blank" rel="noopener">Source: Bloomberg ↗</a>
+</section>
+
+<!-- STORY 02 — YOUTUBE BRANDCAST -->
+<section class="spread spread-navy layout-right">
+  <div class="section-number">02</div>
+  <div class="applies-badge">🚩 Applies to You</div>
+  <div class="category">Creator Economy · YouTube</div>
+  <div class="spread-rule"></div>
+  <h2 class="headline">YouTube's Brandcast Debut: Creator Shows & AI Ad Deals</h2>
+  <p class="summary">At Lincoln Center on May 13, YouTube unveiled its first-ever Creator Shows slate at Brandcast, putting creators like Alex Cooper and Kareem Rahma alongside Trevor Noah and Chappell Roan in a full-scale upfront pitch to advertisers. The platform also retired BrandConnect and replaced it with Creator Partnerships — an AI-powered platform integrated directly into Google Ads and DV360 that YouTube says delivers a 30% average lift in conversion. New Custom Sponsorships and Affiliate Partnerships Boost features let brands ride organic creator content with minimal friction.</p>
+  <a class="source-link" href="https://blog.youtube/news-and-events/brandcast-2026-highlights/" target="_blank" rel="noopener">Source: YouTube Blog ↗</a>
+</section>
+
+<!-- STORY 03 — META AGE DETECTION AI -->
+<section class="spread spread-crimson layout-left">
+  <div class="section-number">03</div>
+  <div class="category">Big Tech · Privacy</div>
+  <div class="spread-rule"></div>
+  <h2 class="headline">Meta Will Scan Your Body to Guess Your Age</h2>
+  <p class="summary">Meta announced it will deploy AI to analyze height, bone structure, and other physical cues in user photos and videos to determine whether accounts belong to minors under 13. If the system flags a likely underage user, Meta will deactivate the account and require age verification before reinstatement. The move is a response to mounting regulatory pressure around child safety on Instagram and Facebook, though privacy advocates are already raising concerns about biometric surveillance being baked into routine social media use.</p>
+  <a class="source-link" href="https://techcrunch.com/2026/05/05/meta-will-use-ai-to-analyze-height-and-bone-structure-to-identify-if-users-are-underage/" target="_blank" rel="noopener">Source: TechCrunch ↗</a>
+</section>
+
+<!-- STORY 04 — SIERRA $950M + GHOSTWRITER -->
+<section class="spread spread-terminal layout-left">
+  <div class="section-number">04</div>
+  <div class="category">Enterprise AI · Venture Capital</div>
+  <div class="spread-rule"></div>
+  <h2 class="headline">Sierra Raises $950M, Launches AI That Builds Other AIs</h2>
+  <p class="summary">Bret Taylor's enterprise AI company Sierra closed a $950 million funding round led by Tiger Global and GV, valuing it north of $15 billion. The news coincides with the launch of Ghostwriter, an "agent as a service" product where users describe a need in plain language and the system autonomously creates, configures, and deploys a specialized AI agent to handle it. Sierra has become one of the most-watched enterprise AI bets, with the round signaling that the race to own agent infrastructure is accelerating fast.</p>
+  <a class="source-link" href="https://techcrunch.com/2026/05/04/sierra-raises-950m-as-the-race-to-own-enterprise-ai-gets-serious/" target="_blank" rel="noopener">Source: TechCrunch ↗</a>
+</section>
+
+<!-- STORY 05 — SECURE DATA ACT -->
+<section class="spread spread-ivory layout-left">
+  <div class="section-number">05</div>
+  <div class="category">Policy · Digital Rights</div>
+  <div class="spread-rule"></div>
+  <h2 class="headline">The Bill That Could Kill 21 State Privacy Laws at Once</h2>
+  <p class="summary">The Electronic Frontier Foundation published a sharp critique this week of the SECURE Data Act, flagging that Section 15 of the bill would preempt any state law, rule, or regulation that "relates to" its provisions — effectively wiping out 21 state consumer privacy laws in a single stroke. Critics argue the bill, framed as a federal baseline, is in practice a rollback disguised as progress, stripping protections that states like California and Virginia have spent years building. The bill is still moving through committee, and its final scope remains contested.</p>
+  <a class="source-link" href="https://www.eff.org/deeplinks/2026/05/secure-data-act-not-serious-piece-privacy-legislation" target="_blank" rel="noopener">Source: EFF ↗</a>
+</section>
+
+<!-- STORY 06 — VIMEO BREACH -->
+<section class="spread spread-steel layout-right">
+  <div class="section-number">06</div>
+  <div class="category">Cybersecurity · Data Breach</div>
+  <div class="spread-rule"></div>
+  <h2 class="headline">ShinyHunters Hack Vimeo, Expose 119,000 Accounts</h2>
+  <p class="summary">The ShinyHunters extortion gang — the same group behind several high-profile breaches — has claimed responsibility for a cyberattack on Vimeo, stealing personal information belonging to more than 119,000 users. The breach reportedly occurred in April and was disclosed publicly this week. ShinyHunters simultaneously claimed a separate attack on Instructure, the parent company of the Canvas learning management system used by millions of students and educators, with data confirmed stolen in that incident as well. Both incidents are under active investigation.</p>
+  <a class="source-link" href="https://www.privacyguides.org/news/2026/05/11/data-breach-roundup-may-1-may-7-2026/" target="_blank" rel="noopener">Source: Privacy Guides ↗</a>
+</section>
+
+<!-- STORY 07 — FIGMA MAY 2026 -->
+<section class="spread spread-gold layout-left">
+  <div class="section-number">07</div>
+  <div class="applies-badge">🚩 Applies to You</div>
+  <div class="category">Design Tools · Product Update</div>
+  <div class="spread-rule"></div>
+  <h2 class="headline">Figma's May Drop: MCP Skills, Agentic Design & FigJam Overhaul</h2>
+  <p class="summary">Figma's May 2026 release notes landed with some substantial additions: new MCP (Model Context Protocol) skills integrated into FigJam let teams turn written specs directly into visual planning boards, and updated agentic design tools can now operate from either code or the canvas — accelerating the full design-to-development loop. Enterprise admins also got better AI credit tracking by billing group. Separately, the desktop app received faster file switching and background preloading, and FigJam gained cell merging, text color in tables, and cleaner arrow routing.</p>
+  <a class="source-link" href="https://help.figma.com/hc/en-us/articles/40219873508247-Release-notes-roundup-May-2026" target="_blank" rel="noopener">Source: Figma Help ↗</a>
+</section>
+
+<!-- STORY 08 — EXOPLANETS -->
+<section class="spread spread-indigo layout-center">
+  <div class="section-number">08</div>
+  <div class="category">Astronomy · AI Science</div>
+  <div class="spread-rule"></div>
+  <h2 class="headline">AI Uncovers 10,000 Hidden Planets in NASA's Archives</h2>
+  <p class="summary">Scientists used a new machine-learning model called RAVEN to sweep through light-curve data from NASA's TESS mission, scanning 83.7 million stars in the process. The result: 10,091 new exoplanet candidates that had never been identified before — potentially tripling the known count of alien worlds — including bizarre "hot Neptunes" orbiting their stars in under a day and planets lurking in the theoretically depleted Neptunian desert. Separately, the AI tool confirmed over 100 previously unverified exoplanets, with 31 representing brand-new worlds. The findings show that most of the TESS archive's faint stars had never been seriously analyzed before now.</p>
+  <a class="source-link" href="https://www.sciencedaily.com/releases/2026/05/260502233926.htm" target="_blank" rel="noopener">Source: ScienceDaily ↗</a>
+</section>
+
+<!-- STORY 09 — DNA DISCOVERY -->
+<section class="spread spread-space layout-left">
+  <div class="section-number">09</div>
+  <div class="category">Biology · Genetics</div>
+  <div class="spread-rule"></div>
+  <h2 class="headline">Scientists Find DNA That Breaks the Rules of Life</h2>
+  <p class="summary">Researchers using a new single-cell DNA sequencing method made an accidental discovery that is rippling through the biology community: a microscopic pond organism appears to use a genetic code that diverges from the near-universal rules all known life follows. The find, published in early May, challenges foundational assumptions about how genetic information is read and expressed at the cellular level. Scientists caution the organism is an extreme outlier, but the discovery raises fresh questions about how many other "rule-breaking" life forms may be hiding in overlooked microbial corners of the planet.</p>
+  <a class="source-link" href="https://www.sciencedaily.com/releases/2026/05/260507024045.htm" target="_blank" rel="noopener">Source: ScienceDaily ↗</a>
+</section>
+
+<!-- STORY 10 — IMAGE AI APP GROWTH -->
+<section class="spread spread-sage layout-right">
+  <div class="section-number">10</div>
+  <div class="applies-badge">🚩 Applies to You</div>
+  <div class="category">AI Trends · Creator Tools</div>
+  <div class="spread-rule"></div>
+  <h2 class="headline">Image AI Is Beating Chatbots — by 6.5x in App Downloads</h2>
+  <p class="summary">According to new data from app intelligence firm Appfigures, image model releases are now the biggest driver of AI mobile app growth — generating 6.5 times more downloads than traditional chatbot or language model updates. The finding reflects a broader shift in consumer behavior: after two years of chatbot novelty, users are gravitating toward AI tools that produce tangible, shareable visual outputs. For creators and marketers, this signals that visual AI integrations — not conversation — are where the next wave of audience engagement is building.</p>
+  <a class="source-link" href="https://techcrunch.com/2026/05/04/image-ai-models-now-drive-app-growth-beating-chatbot-upgrades/" target="_blank" rel="noopener">Source: TechCrunch ↗</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <p><strong>The Daily Brief</strong> · Spencer Lowder's AI-curated editorial digest</p>
+  <p>Published Friday, May 15, 2026 · Archived at spence1a.github.io/NewsPaper/2026-05-15.html</p>
+  <p style="margin-top:1rem; font-size:0.65rem;">Stories flagged 🚩 "Applies to You" are selected for relevance to YouTube creator workflows, VidSummit operations, and Claude/AI usage.</p>
+</footer>
+
+<script>
+  // PROGRESS BAR
+  const bar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (scrolled / total * 100) + '%';
+  });
+
+  // SCROLL REVEAL
+  const spreads = document.querySelectorAll('.spread');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  spreads.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
