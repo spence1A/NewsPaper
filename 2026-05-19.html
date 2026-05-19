@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Spencer's Daily Brief — Monday, May 18, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --progress-h: 4px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0a;
+    color: #f0ece4;
+    overflow-x: hidden;
+  }
+
+  /* Progress bar */
+  #progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: var(--progress-h);
+    width: 0%;
+    background: linear-gradient(90deg, #e84040, #ff8c42, #f5c842);
+    z-index: 9999;
+    transition: width 0.1s linear;
+  }
+
+  /* Masthead */
+  .masthead {
+    background: #0a0a0a;
+    color: #f0ece4;
+    padding: 3rem 4rem 2.5rem;
+    border-bottom: 2px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    position: sticky;
+    top: var(--progress-h);
+    z-index: 100;
+  }
+
+  .masthead-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .masthead-meta {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #888;
+    text-align: right;
+  }
+
+  .masthead-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    color: #555;
+    margin-top: 0.3rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* Story spreads */
+  .spread {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(2rem, 6vw, 6rem);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1);
+  }
+
+  .spread.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Color palette per spread */
+  .spread-1  { background: #f5f0e8; color: #1a1208; }
+  .spread-2  { background: #0f1923; color: #e8f0f5; }
+  .spread-3  { background: #5c0a0a; color: #f9e8e8; }
+  .spread-4  { background: #0a1f0a; color: #c8f5c8; }
+  .spread-5  { background: #f7f4e9; color: #1a160a; }
+  .spread-6  { background: #0f2035; color: #dceeff; }
+  .spread-7  { background: #2a1f00; color: #fff3c0; }
+  .spread-8  { background: #0f0f35; color: #d0d0ff; }
+  .spread-9  { background: #050510; color: #c8d0e8; }
+  .spread-10 { background: #0e1a10; color: #d0f0d8; }
+
+  /* Section number */
+  .section-num {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(6rem, 20vw, 18rem);
+    font-weight: 900;
+    line-height: 0.85;
+    opacity: 0.08;
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    letter-spacing: -0.04em;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  /* Badge */
+  .badge-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .category-tag {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    border-radius: 2px;
+    border: 1px solid currentColor;
+    opacity: 0.7;
+  }
+
+  .applies-badge {
+    background: #e84040;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.75rem;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  /* Headline */
+  .headline {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 5.5vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    max-width: 14ch;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Summary */
+  .summary {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1rem, 1.6vw, 1.25rem);
+    font-weight: 400;
+    line-height: 1.7;
+    max-width: 60ch;
+    opacity: 0.85;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Source link */
+  .source-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    color: inherit;
+    border-bottom: 2px solid currentColor;
+    padding-bottom: 0.1rem;
+    opacity: 0.75;
+    transition: opacity 0.2s;
+    position: relative;
+    z-index: 1;
+  }
+
+  .source-link:hover { opacity: 1; }
+
+  /* Decorative divider line */
+  .spread::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.1;
+  }
+
+  /* Large italic pull quote accent for variety */
+  .accent-italic {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    font-weight: 300;
+    opacity: 0.45;
+    margin-bottom: 1rem;
+    letter-spacing: -0.01em;
+  }
+
+  @media (max-width: 600px) {
+    .masthead { padding: 1.5rem; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .spread { padding: 2rem 1.5rem; }
+    .section-num { font-size: 8rem; }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- Masthead -->
+<header class="masthead">
+  <div>
+    <div class="masthead-title">Spencer's Daily Brief</div>
+    <div class="masthead-date">Monday, May 18, 2026</div>
+  </div>
+  <div class="masthead-meta">
+    10 Stories<br>For One Brain
+  </div>
+</header>
+
+
+<!-- STORY 1 — Cream/Warm White -->
+<section class="spread spread-1">
+  <div class="section-num">01</div>
+  <div class="badge-wrapper">
+    <span class="category-tag">AI &amp; Business</span>
+    <span class="applies-badge">🚩 Applies to You</span>
+  </div>
+  <h2 class="headline">Anthropic Eyes $950B Valuation in Mega-Round</h2>
+  <p class="summary">Anthropic is reportedly in talks to raise between $30 and $50 billion in a new funding round that would value the Claude-maker at a staggering $950 billion — nearly closing the gap with a trillion-dollar company. The AI lab simultaneously announced it has committed to spending $200 billion on Google Cloud infrastructure and chips, and its run-rate revenue has now surpassed $30 billion, up from ~$9 billion at the end of 2025.</p>
+  <a class="source-link" href="https://www.engadget.com/2165585/anthropic-reportedly-agrees-to-pay-google-200-billion-for-chips-and-cloud-access/" target="_blank" rel="noopener">Source ↗</a>
+</section>
+
+
+<!-- STORY 2 — Midnight Navy -->
+<section class="spread spread-2">
+  <div class="section-num">02</div>
+  <div class="badge-wrapper">
+    <span class="category-tag">Creator Economy</span>
+    <span class="applies-badge">🚩 Applies to You</span>
+  </div>
+  <h2 class="headline">YouTube Doubles Down on Creator Shows at Brandcast 2026</h2>
+  <p class="summary">YouTube's annual Brandcast event on May 13 unveiled a massive new Creator Shows slate — featuring Alex Cooper's Unwell Games, Trevor Noah's World Tour, and dozens more — signaling YouTube is leaning hard into premium creator-led programming to compete with traditional TV. The platform also rolled out AI-powered ad creation tools using Gemini and Veo, plus Buy with Google Pay on connected TVs and an Affiliate Partnerships Boost to help brands amplify creator content.</p>
+  <a class="source-link" href="https://www.adweek.com/convergent-tv/youtube-brandcast-2026-creators/" target="_blank" rel="noopener">Source ↗</a>
+</section>
+
+
+<!-- STORY 3 — Deep Crimson -->
+<section class="spread spread-3">
+  <div class="section-num">03</div>
+  <div class="badge-wrapper">
+    <span class="category-tag">Privacy &amp; Security</span>
+  </div>
+  <h2 class="headline">ShinyHunters Hack Vimeo, Steal 119,000 Users' Data</h2>
+  <p class="summary">The prolific ShinyHunters extortion gang stole personal information belonging to more than 119,000 people after hacking the Vimeo online video platform in April 2026. The breach has been confirmed by privacy researchers, making it one of the most high-profile video platform security incidents of the year — a warning for creators who store sensitive footage or subscriber data on the service.</p>
+  <a class="source-link" href="https://www.privacyguides.org/news/2026/05/11/data-breach-roundup-may-1-may-7-2026/" target="_blank" rel="noopener">Source ↗</a>
+</section>
+
+
+<!-- STORY 4 — Terminal Green -->
+<section class="spread spread-4">
+  <div class="section-num">04</div>
+  <div class="badge-wrapper">
+    <span class="category-tag">Design Tools</span>
+    <span class="applies-badge">🚩 Applies to You</span>
+  </div>
+  <h2 class="headline">Figma Ships a Speed Overhaul: 10× Faster Vector Editing</h2>
+  <p class="summary">Figma's May 2026 release roundup drops serious performance numbers: vector editing is up to 10× faster, Make frame rates are 4× smoother, load times are faster across the board, and memory warnings dropped by 92%. The update also adds voice-to-text prompts, version history for Make, a new Zapier connector, and massive FigJam improvements including cell merging in tables and improved canvas navigation.</p>
+  <a class="source-link" href="https://help.figma.com/hc/en-us/articles/40219873508247-Release-notes-roundup-May-2026" target="_blank" rel="noopener">Source ↗</a>
+</section>
+
+
+<!-- STORY 5 — Academic Ivory -->
+<section class="spread spread-5">
+  <div class="section-num">05</div>
+  <div class="badge-wrapper">
+    <span class="category-tag">AI Safety</span>
+  </div>
+  <div class="accent-italic">"Height, bone structure, behavioral signals."</div>
+  <h2 class="headline">Meta to Scan Your Body with AI to Guess If You're Under 13</h2>
+  <p class="summary">Meta announced it will deploy AI that analyzes visual cues — including height and bone structure in photos and videos — to detect if a user may be underage and remove them from Facebook and Instagram. The system is part of Meta's expanded Teen Accounts enforcement, now rolling out to 27 countries in the EU and Brazil, raising immediate questions about biometric surveillance and the line between child safety and mass body scanning.</p>
+  <a class="source-link" href="https://techcrunch.com/2026/05/05/meta-will-use-ai-to-analyze-height-and-bone-structure-to-identify-if-users-are-underage/" target="_blank" rel="noopener">Source ↗</a>
+</section>
+
+
+<!-- STORY 6 — Steel Blue -->
+<section class="spread spread-6">
+  <div class="section-num">06</div>
+  <div class="badge-wrapper">
+    <span class="category-tag">Privacy &amp; Law</span>
+  </div>
+  <h2 class="headline">Federal Privacy Bill Would Erase 21 State Laws — Critics Revolt</h2>
+  <p class="summary">The SECURE Data Act, a proposed federal consumer privacy law, is drawing fire from the EFF and EPIC for a provision that would preempt all 21 existing state consumer privacy statutes — effectively wiping out more protective rules in states like California, Virginia, and Colorado. Critics argue it offers weak federal protections in exchange for dismantling a decade of state-level progress, making it a step backward despite its pro-consumer branding.</p>
+  <a class="source-link" href="https://www.eff.org/deeplinks/2026/05/secure-data-act-not-serious-piece-privacy-legislation" target="_blank" rel="noopener">Source ↗</a>
+</section>
+
+
+<!-- STORY 7 — Golden Yellow -->
+<section class="spread spread-7">
+  <div class="section-num">07</div>
+  <div class="badge-wrapper">
+    <span class="category-tag">AI &amp; Video</span>
+  </div>
+  <h2 class="headline">Runway Hits $5.3B Valuation, Plans Second World Model</h2>
+  <p class="summary">AI video company Runway is now valued at $5.3 billion after adding $40 million in annual recurring revenue in Q2 2026 alone — stunning growth for a company that started as a filmmaking tool. The startup launched its first AI "world model" in December 2025 and is now planning a second release this year, putting it in direct competition with Google's generative video capabilities as the race to own cinematic AI intensifies.</p>
+  <a class="source-link" href="https://techcrunch.com/2026/05/15/runway-started-by-helping-filmmakers-now-it-wants-to-beat-google-at-ai/" target="_blank" rel="noopener">Source ↗</a>
+</section>
+
+
+<!-- STORY 8 — Indigo -->
+<section class="spread spread-8">
+  <div class="section-num">08</div>
+  <div class="badge-wrapper">
+    <span class="category-tag">Science</span>
+  </div>
+  <h2 class="headline">Scientists Stumble on DNA That "Breaks the Rules of Life"</h2>
+  <p class="summary">Researchers conducting a routine experiment with a new single-cell DNA sequencing method made a startling accidental discovery: a bizarre genetic code inside a microscopic pond organism that violates foundational assumptions about how DNA works in living cells. The finding, published in May 2026, has prompted biologists to reconsider the universality of the genetic code — one of biology's most sacred tenets — and opens questions about life's outer boundaries.</p>
+  <a class="source-link" href="https://www.sciencedaily.com/releases/2026/05/260507024045.htm" target="_blank" rel="noopener">Source ↗</a>
+</section>
+
+
+<!-- STORY 9 — Deep Space Black -->
+<section class="spread spread-9">
+  <div class="section-num">09</div>
+  <div class="badge-wrapper">
+    <span class="category-tag">Health &amp; Science</span>
+  </div>
+  <div class="accent-italic">"Fermented. Ancient. Possibly your best defense."</div>
+  <h2 class="headline">Kimchi Bacteria May Flush Microplastics from Your Body</h2>
+  <p class="summary">South Korean scientists have discovered that a probiotic bacterium found in kimchi — Lactobacillus plantarum — may help the human body excrete tiny microplastic particles before they can accumulate in organs. The study found the bacterium's surface proteins bind to microplastics and carry them out of the gut, offering a potential dietary intervention against one of the most pervasive environmental health threats of our time.</p>
+  <a class="source-link" href="https://www.sciencedaily.com/news/top/science/" target="_blank" rel="noopener">Source ↗</a>
+</section>
+
+
+<!-- STORY 10 — Sage Green -->
+<section class="spread spread-10">
+  <div class="section-num">10</div>
+  <div class="badge-wrapper">
+    <span class="category-tag">Quantum Computing</span>
+  </div>
+  <h2 class="headline">Physicists Create Exotic Quantum States Far More Stable Than Before</h2>
+  <p class="summary">Researchers announced in May 2026 they have successfully created exotic quantum states by "driving" materials with precisely timed magnetic pulses — producing quantum configurations that are far more resistant to the decoherence errors that have long plagued quantum computers. The breakthrough could unlock a new class of error-resistant qubits, potentially accelerating the path to practical quantum computing by years.</p>
+  <a class="source-link" href="https://www.sciencedaily.com/releases/2026/05/260504154014.htm" target="_blank" rel="noopener">Source ↗</a>
+</section>
+
+
+<script>
+  // Progress bar
+  const bar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docH = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (scrollTop / docH * 100) + '%';
+  }, { passive: true });
+
+  // Scroll reveal
+  const spreads = document.querySelectorAll('.spread');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  spreads.forEach(s => io.observe(s));
+</script>
+</body>
+</html>
