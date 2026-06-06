@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — June 4, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --progress-bar-height: 4px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Progress Bar */
+  #progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: var(--progress-bar-height);
+    width: 0%;
+    background: #ff3333;
+    z-index: 9999;
+    transition: width 0.1s linear;
+  }
+
+  /* Header */
+  .masthead {
+    background: #0a0a0a;
+    color: #f5f0e8;
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+    position: relative;
+  }
+  .masthead-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 1rem;
+  }
+  .masthead-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 900;
+    line-height: 0.9;
+    margin-bottom: 1rem;
+  }
+  .masthead-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    color: #aaa;
+  }
+  .masthead-rule {
+    height: 1px;
+    background: #333;
+    margin: 2rem auto 0;
+    max-width: 600px;
+  }
+
+  /* Spreads */
+  .spread {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5rem 2rem;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .spread.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Color themes */
+  .spread-1  { background: #f5f0e8; color: #1a1a1a; }
+  .spread-2  { background: #0d1b2a; color: #e8f0f8; }
+  .spread-3  { background: #6b1a1a; color: #fce8e8; }
+  .spread-4  { background: #0d2b0d; color: #c8f0c8; }
+  .spread-5  { background: #f8f4e0; color: #2a2a1a; }
+  .spread-6  { background: #1a2f47; color: #d0e8f8; }
+  .spread-7  { background: #f5c842; color: #1a1500; }
+  .spread-8  { background: #2a1a5e; color: #e0d8f8; }
+  .spread-9  { background: #080c14; color: #c8d8f0; }
+  .spread-10 { background: #2d4a3e; color: #d8f0e8; }
+
+  .spread-inner {
+    max-width: 900px;
+    width: 100%;
+    position: relative;
+  }
+
+  .spread-number {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(6rem, 15vw, 14rem);
+    font-weight: 900;
+    line-height: 1;
+    opacity: 0.08;
+    position: absolute;
+    top: -2rem;
+    right: -1rem;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .spread-label {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .spread-headline {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.2rem, 5vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+    max-width: 700px;
+  }
+
+  .spread-summary {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 580px;
+    opacity: 0.85;
+    margin-bottom: 2.5rem;
+  }
+
+  .spread-source {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.7rem 1.5rem;
+    border: 1.5px solid currentColor;
+    opacity: 0.7;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .spread-source:hover {
+    opacity: 1;
+    transform: translateX(4px);
+  }
+  .spread-source { color: inherit; }
+
+  /* Badge */
+  .badge-applies {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: #ff3333;
+    color: white;
+    padding: 0.35rem 0.8rem;
+    margin-bottom: 1.2rem;
+    display: table;
+  }
+
+  /* Footer */
+  .footer {
+    background: #0a0a0a;
+    color: #555;
+    text-align: center;
+    padding: 3rem 2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<header class="masthead">
+  <p class="masthead-eyebrow">Spencer's Editorial Brief</p>
+  <h1 class="masthead-title">The Daily<br>Brief</h1>
+  <p class="masthead-date">Thursday, June 4, 2026 &nbsp;·&nbsp; 10 Stories</p>
+  <div class="masthead-rule"></div>
+</header>
+
+<!-- STORY 1 -->
+<section class="spread spread-1">
+  <div class="spread-inner">
+    <span class="spread-number">01</span>
+    <div class="badge-applies">🚩 Applies to You</div>
+    <p class="spread-label">Artificial Intelligence · Business</p>
+    <h2 class="spread-headline">Anthropic Confidentially Files for IPO as Valuation Approaches $1 Trillion</h2>
+    <p class="spread-summary">Anthropic — maker of Claude — has confidentially filed for an initial public offering, setting up one of the most anticipated public-market tests of the AI boom. The move follows a $65 billion funding round that pushed its valuation to $965 billion. The company's run-rate revenue has surged past $30 billion, up from roughly $9 billion at the end of 2025, driven largely by Claude Code's dominance in the AI coding market.</p>
+    <a class="spread-source" href="https://www.cbsnews.com/news/anthropic-ipo-confidential-filing-claude-ai/" target="_blank" rel="noopener">Source ↗</a>
+  </div>
+</section>
+
+<!-- STORY 2 -->
+<section class="spread spread-2">
+  <div class="spread-inner">
+    <span class="spread-number">02</span>
+    <div class="badge-applies">🚩 Applies to You</div>
+    <p class="spread-label">Artificial Intelligence · Product</p>
+    <h2 class="spread-headline">Claude Opus 4.8 Lands With Effort Control, Dynamic Workflows & a Cheaper Fast Mode</h2>
+    <p class="spread-summary">Anthropic shipped Claude Opus 4.8, delivering stronger benchmark performance, better collaboration features, and improved honesty. New additions include effort control in claude.ai, dynamic workflows inside Claude Code, and a more affordable fast mode for API users. The release cements Anthropic's lead in coding tools as Google and Microsoft race to catch up.</p>
+    <a class="spread-source" href="https://releasebot.io/updates/anthropic" target="_blank" rel="noopener">Source ↗</a>
+  </div>
+</section>
+
+<!-- STORY 3 -->
+<section class="spread spread-3">
+  <div class="spread-inner">
+    <span class="spread-number">03</span>
+    <div class="badge-applies">🚩 Applies to You</div>
+    <p class="spread-label">Artificial Intelligence · Competition</p>
+    <h2 class="spread-headline">Microsoft & Google Declare War on Anthropic in AI Coding Market</h2>
+    <p class="spread-summary">With coding tools emerging as the hottest battleground in generative AI, Microsoft and Google announced sweeping new coding-focused products at their respective developer conferences — Build and Google I/O. Both companies are directly targeting Anthropic's Claude Code, which has driven Anthropic's customer base to over 1,000 businesses each spending $1M+ annually. The fight for developer loyalty is officially on.</p>
+    <a class="spread-source" href="https://www.cnbc.com/2026/06/01/microsoft-and-google-take-on-anthropic-and-openai-in-ai-coding-models.html" target="_blank" rel="noopener">Source ↗</a>
+  </div>
+</section>
+
+<!-- STORY 4 -->
+<section class="spread spread-4">
+  <div class="spread-inner">
+    <span class="spread-number">04</span>
+    <div class="badge-applies">🚩 Applies to You</div>
+    <p class="spread-label">Creator Economy · Platform</p>
+    <h2 class="spread-headline">YouTube Kills BrandConnect, Replaces It With AI-Powered Creator Partnerships Platform</h2>
+    <p class="spread-summary">YouTube announced it is retiring BrandConnect and replacing it with Creator Partnerships — a centralized, AI-powered platform that wires brand-creator deals directly into Google Ads, DV360, and YouTube Studio. Unveiled at NewFronts 2026, the platform also adds a dedicated Brand Partnership Hub so sponsors can discover creators faster. The move signals YouTube doubling down on making brand deals easier and more native to its ecosystem.</p>
+    <a class="spread-source" href="https://www.thekeyword.co/news/youtube-creator-partnerships-platform" target="_blank" rel="noopener">Source ↗</a>
+  </div>
+</section>
+
+<!-- STORY 5 -->
+<section class="spread spread-5">
+  <div class="spread-inner">
+    <span class="spread-number">05</span>
+    <div class="badge-applies">🚩 Applies to You</div>
+    <p class="spread-label">Design Tools · Product</p>
+    <h2 class="spread-headline">Figma Make Beta Opens: Direct Editing, Annotations, Chat & PR Creation in One Workflow</h2>
+    <p class="spread-summary">Figma launched the limited beta of Figma Make on May 28, unlocking direct editing, annotations, chat, and pull request creation — all without consuming credits during beta. The company also shipped new MCP skills and architecture tools in FigJam this week, letting teams turn specs into visual boards and bring review context back into implementation. Figma is clearly positioning itself as an end-to-end development tool, not just a design canvas.</p>
+    <a class="spread-source" href="https://www.figma.com/release-notes/" target="_blank" rel="noopener">Source ↗</a>
+  </div>
+</section>
+
+<!-- STORY 6 -->
+<section class="spread spread-6">
+  <div class="spread-inner">
+    <span class="spread-number">06</span>
+    <p class="spread-label">Privacy · Enforcement</p>
+    <h2 class="spread-headline">California Hits GM With Record $12.75M Settlement for Secretly Selling Drivers' Location Data</h2>
+    <p class="spread-summary">The California Attorney General secured a record $12.75 million settlement with General Motors, resolving allegations that the automaker illegally sold Californians' location and driving behavior data without adequate notice or consent — violating the California Consumer Privacy Act. The case is the largest CCPA enforcement action to date and sends a clear signal that selling behavioral data without explicit consent carries massive legal risk.</p>
+    <a class="spread-source" href="https://www.law360.com/cybersecurity-privacy" target="_blank" rel="noopener">Source ↗</a>
+  </div>
+</section>
+
+<!-- STORY 7 -->
+<section class="spread spread-7">
+  <div class="spread-inner">
+    <span class="spread-number">07</span>
+    <div class="badge-applies">🚩 Applies to You</div>
+    <p class="spread-label">Artificial Intelligence · Regulation</p>
+    <h2 class="spread-headline">FTC Fines Cox Media Group $1M for Selling "Active Listening" AI Ad Targeting</h2>
+    <p class="spread-summary">The Federal Trade Commission is requiring Cox Media Group and two other firms to pay nearly $1 million to settle charges they deceived customers about AI-powered "active listening" marketing services — tools that allegedly listened to users' conversations to target ads. The FTC's action is the first major enforcement move against ambient audio surveillance in advertising and could reshape how AI ad-tech companies market their capabilities.</p>
+    <a class="spread-source" href="https://www.ftc.gov/news-events/topics/protecting-consumer-privacy-security/privacy-security-enforcement" target="_blank" rel="noopener">Source ↗</a>
+  </div>
+</section>
+
+<!-- STORY 8 -->
+<section class="spread spread-8">
+  <div class="spread-inner">
+    <span class="spread-number">08</span>
+    <p class="spread-label">Cybersecurity · Breach</p>
+    <h2 class="spread-headline">ShinyHunters Hack 7-Eleven; Class Action Filed the Same Day</h2>
+    <p class="spread-summary">A data breach victim filed a putative class action against 7-Eleven this week after the notorious ShinyHunters hacking group breached the convenience chain and leaked personal customer data. Plaintiffs allege 7-Eleven's negligence enabled the attack. ShinyHunters has previously been linked to high-profile breaches at Ticketmaster, Santander, and others — the group remains one of the most prolific cybercrime outfits operating today.</p>
+    <a class="spread-source" href="https://www.law360.com/cybersecurity-privacy" target="_blank" rel="noopener">Source ↗</a>
+  </div>
+</section>
+
+<!-- STORY 9 -->
+<section class="spread spread-9">
+  <div class="spread-inner">
+    <span class="spread-number">09</span>
+    <p class="spread-label">Science · Physics</p>
+    <h2 class="spread-headline">Scientists Reverse the Direction of Energy Flow in Turbulence — Upending an 80-Year Theory</h2>
+    <p class="spread-summary">Researchers have discovered a method to reverse the direction of energy flow in turbulence, challenging a fundamental theory of fluid dynamics that has stood for more than eight decades. In classical turbulence theory, energy cascades from large eddies down to smaller ones — but the new work demonstrates the opposite cascade is achievable under specific conditions. The finding has potential implications for energy efficiency in engineering and fluid-based computing systems.</p>
+    <a class="spread-source" href="https://www.sciencedaily.com/news/top/science/" target="_blank" rel="noopener">Source ↗</a>
+  </div>
+</section>
+
+<!-- STORY 10 -->
+<section class="spread spread-10">
+  <div class="spread-inner">
+    <span class="spread-number">10</span>
+    <p class="spread-label">Creator Economy · Platform</p>
+    <h2 class="spread-headline">YouTube's "Outside Tonight" Signals Creator-Led Late Night is the New TV</h2>
+    <p class="spread-summary">Creator Julian Shapiro-Barnum is launching Outside Tonight, described as the first late-night variety show designed natively for YouTube — featuring public-park interviews, live music, games, and street comedy. The show is part of YouTube's expanded Creator Shows slate, unveiled at Brandcast at Lincoln Center, which now resembles a traditional TV network's pitch deck. Advertisers are following: YouTube's Brandcast was its biggest yet, with AI-generated ad creation tools powered by Gemini headlining new ad products.</p>
+    <a class="spread-source" href="https://www.adweek.com/convergent-tv/youtube-brandcast-2026-creators/" target="_blank" rel="noopener">Source ↗</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>The Daily Brief &nbsp;·&nbsp; Thursday, June 4, 2026 &nbsp;·&nbsp; Built for Spencer Lowder</p>
+</footer>
+
+<script>
+  // Progress bar
+  const bar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const scrollTop = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.width = pct + '%';
+  });
+
+  // Scroll reveal
+  const spreads = document.querySelectorAll('.spread');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  spreads.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
