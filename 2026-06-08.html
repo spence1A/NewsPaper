@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Daily Brief — June 7, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F5F0E8;
+    --navy: #0D1B2A;
+    --crimson: #8B1A1A;
+    --green: #0D2B0D;
+    --ivory: #FFFFF0;
+    --steel: #2C4A6E;
+    --gold: #C89520;
+    --indigo: #2D1B6E;
+    --space: #080808;
+    --sage: #3D5246;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Progress bar */
+  #progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: #E63946;
+    z-index: 9999;
+    transition: width 0.1s linear;
+  }
+
+  /* Header */
+  .masthead {
+    background: var(--cream);
+    padding: 2.5rem 4rem;
+    border-bottom: 3px solid #111;
+    position: sticky;
+    top: 4px;
+    z-index: 100;
+  }
+  .masthead-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .masthead h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    color: #111;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .masthead-meta {
+    text-align: right;
+  }
+  .masthead-date {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #555;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .masthead-edition {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #888;
+    margin-top: 0.2rem;
+  }
+
+  /* Spreads */
+  .spread {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .spread-inner {
+    max-width: 1100px;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(60px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .spread-inner.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .spread-number {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(8rem, 20vw, 18rem);
+    font-weight: 900;
+    line-height: 0.8;
+    opacity: 0.08;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .badge-applies {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: #E63946;
+    color: white;
+    margin-bottom: 1.5rem;
+  }
+
+  .spread-category {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    opacity: 0.7;
+  }
+
+  .spread-headline {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+  }
+
+  .spread-summary {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-weight: 400;
+    line-height: 1.7;
+    max-width: 700px;
+    opacity: 0.85;
+    margin-bottom: 2.5rem;
+  }
+
+  .source-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-decoration: none;
+    padding: 0.75rem 1.75rem;
+    border-radius: 999px;
+    border: 2px solid currentColor;
+    transition: all 0.2s ease;
+  }
+  .source-link:hover {
+    transform: translateX(4px);
+  }
+
+  /* Individual spread color schemes */
+  .s1  { background: var(--cream);   color: #111; }
+  .s1  .spread-number { color: #111; }
+  .s1  .source-link { color: #111; }
+  .s1  .source-link:hover { background: #111; color: var(--cream); }
+
+  .s2  { background: var(--navy);    color: #E8EDF5; }
+  .s2  .spread-number { color: #E8EDF5; }
+  .s2  .source-link { color: #7AADFF; }
+  .s2  .source-link:hover { background: #7AADFF; color: var(--navy); }
+
+  .s3  { background: var(--crimson); color: #FEF0F0; }
+  .s3  .spread-number { color: #FEF0F0; }
+  .s3  .source-link { color: #FFAAAA; }
+  .s3  .source-link:hover { background: #FFAAAA; color: var(--crimson); }
+
+  .s4  { background: var(--green);   color: #AFFFAF; }
+  .s4  .spread-number { color: #AFFFAF; }
+  .s4  .source-link { color: #AFFFAF; }
+  .s4  .source-link:hover { background: #AFFFAF; color: var(--green); }
+
+  .s5  { background: var(--ivory);   color: #1A1A00; }
+  .s5  .spread-number { color: #1A1A00; }
+  .s5  .source-link { color: #4A4A10; }
+  .s5  .source-link:hover { background: #4A4A10; color: var(--ivory); }
+
+  .s6  { background: var(--steel);   color: #D4E8FF; }
+  .s6  .spread-number { color: #D4E8FF; }
+  .s6  .source-link { color: #9AC8FF; }
+  .s6  .source-link:hover { background: #9AC8FF; color: var(--steel); }
+
+  .s7  { background: #FFF3B0;        color: #2A1800; }
+  .s7  .spread-number { color: #2A1800; }
+  .s7  .source-link { color: #7A4500; }
+  .s7  .source-link:hover { background: #7A4500; color: #FFF3B0; }
+
+  .s8  { background: var(--indigo);  color: #D9D0FF; }
+  .s8  .spread-number { color: #D9D0FF; }
+  .s8  .source-link { color: #B8AAFF; }
+  .s8  .source-link:hover { background: #B8AAFF; color: var(--indigo); }
+
+  .s9  { background: var(--space);   color: #C8FFC8; }
+  .s9  .spread-number { color: #C8FFC8; }
+  .s9  .source-link { color: #80FF80; }
+  .s9  .source-link:hover { background: #80FF80; color: var(--space); }
+
+  .s10 { background: #2A3D32;        color: #D6EDD8; }
+  .s10 .spread-number { color: #D6EDD8; }
+  .s10 .source-link { color: #A8D8AA; }
+  .s10 .source-link:hover { background: #A8D8AA; color: #2A3D32; }
+
+  /* Divider line */
+  .spread-divider {
+    width: 60px;
+    height: 3px;
+    background: currentColor;
+    opacity: 0.4;
+    margin: 2rem 0;
+  }
+
+  /* Footer */
+  .footer {
+    background: #111;
+    color: #888;
+    padding: 3rem 4rem;
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+  }
+  .footer strong {
+    color: #ccc;
+  }
+
+  @media (max-width: 768px) {
+    .masthead { padding: 1.5rem 1.5rem; }
+    .spread { padding: 4rem 1.5rem; }
+    .spread-number { font-size: 8rem; }
+  }
+</style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- Masthead -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <h1>The Daily Brief</h1>
+    <div class="masthead-meta">
+      <div class="masthead-date">Sunday, June 7, 2026</div>
+      <div class="masthead-edition">10 Stories Worth Reading</div>
+    </div>
+  </div>
+</header>
+
+<!-- Story 1: Apple WWDC 2026 -->
+<section class="spread s1">
+  <div class="spread-number">01</div>
+  <div class="spread-inner">
+    <span class="badge-applies">🚩 Applies to You</span>
+    <div class="spread-category">Big Tech / Events</div>
+    <h2 class="spread-headline">Apple WWDC Kicks Off Tomorrow — Siri Gets a Gemini Brain</h2>
+    <div class="spread-divider"></div>
+    <p class="spread-summary">Apple's Worldwide Developers Conference 2026 opens Monday June 8 with Tim Cook's keynote, widely expected to be his final WWDC as CEO. The spotlight lands on iOS 27, a rebuilt Siri powered by Google Gemini, and a sweeping Apple Intelligence overhaul — plus new AI image-editing tools called Extend, Enhance, and Reframe. The hybrid event runs June 8–12 and is free for developers globally.</p>
+    <a href="https://techcabal.com/2026/06/06/apple-wwdc-2026-what-to-expect/" target="_blank" rel="noopener" class="source-link">Source ↗</a>
+  </div>
+</section>
+
+<!-- Story 2: Anthropic IPO / $965B valuation -->
+<section class="spread s2">
+  <div class="spread-number">02</div>
+  <div class="spread-inner">
+    <span class="badge-applies">🚩 Applies to You</span>
+    <div class="spread-category">AI / Business</div>
+    <h2 class="spread-headline">Anthropic Files Confidential IPO at $965 Billion Valuation</h2>
+    <div class="spread-divider"></div>
+    <p class="spread-summary">Anthropic has confidentially filed for an IPO, having now surpassed OpenAI in valuation at a reported $965 billion. The company's annualized revenue has cleared $30 billion — roughly tripling from $9 billion at end of 2025 — driven largely by Claude Code's dominance in AI-assisted coding. Google's Sundar Pichai publicly acknowledged his company is "a bit behind" Anthropic and OpenAI on agentic coding tasks.</p>
+    <a href="https://www.tradingkey.com/analysis/stocks/us-stocks/261951081-anthropic-ipo-claude-ai-tradingkey" target="_blank" rel="noopener" class="source-link">Source ↗</a>
+  </div>
+</section>
+
+<!-- Story 3: YouTube Creator Partnerships -->
+<section class="spread s3">
+  <div class="spread-number">03</div>
+  <div class="spread-inner">
+    <span class="badge-applies">🚩 Applies to You</span>
+    <div class="spread-category">YouTube / Creator Economy</div>
+    <h2 class="spread-headline">YouTube Launches Gemini-Powered Creator Partnerships — Zero Commission</h2>
+    <div class="spread-divider"></div>
+    <p class="spread-summary">YouTube officially killed BrandConnect and replaced it with Creator Partnerships, an AI matchmaking platform built on Gemini that plugs directly into Google Ads and YouTube Studio. Brands can now search 3 million YouTube Partner Program creators by audience similarity, organic brand mentions, and subscriber growth — without paying YouTube a cut. Creators who opt in appear 60% more often in advertiser searches.</p>
+    <a href="https://blog.youtube/news-and-events/youtube-creator-partnerships-newfronts-2026/" target="_blank" rel="noopener" class="source-link">Source ↗</a>
+  </div>
+</section>
+
+<!-- Story 4: Figma Check Designs -->
+<section class="spread s4">
+  <div class="spread-number">04</div>
+  <div class="spread-inner">
+    <div class="spread-category">Design / Tools</div>
+    <h2 class="spread-headline">Figma's New "Check Designs" Catches Design System Drift in One Click</h2>
+    <div class="spread-divider"></div>
+    <p class="spread-summary">Released June 4, Figma's "Check Designs" feature automatically compares any file against your team's design system and flags every deviation — detached components, mismatched variables, color contrast violations — then suggests fixes. The company also shipped Plan Mode for Figma Make, which lets AI ask clarifying questions and draft an editable plan before generating complex layouts, cutting hallucinated structure from AI-driven design work.</p>
+    <a href="https://www.figma.com/release-notes/" target="_blank" rel="noopener" class="source-link">Source ↗</a>
+  </div>
+</section>
+
+<!-- Story 5: Massachusetts Privacy Law -->
+<section class="spread s5">
+  <div class="spread-number">05</div>
+  <div class="spread-inner">
+    <div class="spread-category">Privacy / Legislation</div>
+    <h2 class="spread-headline">Massachusetts Passes Comprehensive Privacy Law With Bipartisan Support</h2>
+    <div class="spread-divider"></div>
+    <p class="spread-summary">Democrats and Republicans together passed Massachusetts' first comprehensive data privacy legislation this week, featuring a data-minimization mandate and a limited private right of action for consumers. The law puts Massachusetts in line with California, Colorado, and Virginia in granting residents rights over how their personal information is collected, sold, and processed. It is now headed to Governor Healey's desk.</p>
+    <a href="https://www.privacyguides.org/news/2026/06/05/data-breach-roundup-may-29-june-4-2026/" target="_blank" rel="noopener" class="source-link">Source ↗</a>
+  </div>
+</section>
+
+<!-- Story 6: FTC Take It Down Act -->
+<section class="spread s6">
+  <div class="spread-number">06</div>
+  <div class="spread-inner">
+    <div class="spread-category">Regulation / Online Safety</div>
+    <h2 class="spread-headline">FTC Begins Enforcing the Take It Down Act — Platforms Must Comply Now</h2>
+    <div class="spread-divider"></div>
+    <p class="spread-summary">The Federal Trade Commission has officially begun enforcement of the Take It Down Act, which requires covered platforms to establish procedures for removing non-consensual intimate images — including AI-generated deepfakes. Platforms that fail to implement compliant removal processes before being investigated now face fines and lawsuits. The law was passed earlier this year with rare bipartisan momentum and Presidential signature.</p>
+    <a href="https://www.privacyguides.org/news/2026/06/05/data-breach-roundup-may-29-june-4-2026/" target="_blank" rel="noopener" class="source-link">Source ↗</a>
+  </div>
+</section>
+
+<!-- Story 7: AI Coronavirus Vaccine Human Trial -->
+<section class="spread s7">
+  <div class="spread-number">07</div>
+  <div class="spread-inner">
+    <div class="spread-category">Science / Medicine</div>
+    <h2 class="spread-headline">First AI-Designed Universal Coronavirus Vaccine Clears Human Safety Trial</h2>
+    <div class="spread-divider"></div>
+    <p class="spread-summary">Scientists have successfully tested an AI-designed universal coronavirus vaccine in humans for the first time, reporting it is safe and well tolerated in initial trial results published this week. The vaccine is engineered to target conserved regions shared across coronavirus variants, aiming to provide broad protection against future strains without reformulation. Researchers call the result a proof of concept for AI-accelerated vaccine development.</p>
+    <a href="https://www.sciencedaily.com/" target="_blank" rel="noopener" class="source-link">Source ↗</a>
+  </div>
+</section>
+
+<!-- Story 8: Charter Communications Breach -->
+<section class="spread s8">
+  <div class="spread-number">08</div>
+  <div class="spread-inner">
+    <div class="spread-category">Cybersecurity / Data Breach</div>
+    <h2 class="spread-headline">ShinyHunters Gang Stole 4.9 Million Charter Communications Accounts</h2>
+    <div class="spread-divider"></div>
+    <p class="spread-summary">The ShinyHunters extortion group, responsible for high-profile breaches at Ticketmaster and Snowflake customers, hacked Charter Communications in early April and exfiltrated personal data from approximately 4.9 million customer accounts. The breach surfaced in this week's data breach roundup, with the stolen data including names, addresses, and account credentials. Charter has not yet publicly confirmed the scope.</p>
+    <a href="https://www.privacyguides.org/news/2026/06/05/data-breach-roundup-may-29-june-4-2026/" target="_blank" rel="noopener" class="source-link">Source ↗</a>
+  </div>
+</section>
+
+<!-- Story 9: Octopuses and Mirrors -->
+<section class="spread s9">
+  <div class="spread-number">09</div>
+  <div class="spread-inner">
+    <div class="spread-category">Science / Animal Cognition</div>
+    <h2 class="spread-headline">Octopuses Can Use Mirrors to Find Hidden Food — A First for Invertebrates</h2>
+    <div class="spread-divider"></div>
+    <p class="spread-summary">Dartmouth researchers published findings this week showing octopuses can learn to use mirrors to locate food hidden behind them — a cognitive skill previously documented only in vertebrates including primates, dolphins, and some birds. The discovery challenges assumptions about which nervous system architectures can support spatial reasoning and mirror-mediated problem solving. Octopuses have no backbone and a radically different brain structure from all other animals known to exhibit this behavior.</p>
+    <a href="https://www.sciencedaily.com/news/top/science/" target="_blank" rel="noopener" class="source-link">Source ↗</a>
+  </div>
+</section>
+
+<!-- Story 10: YouTube Profanity Monetization -->
+<section class="spread s10">
+  <div class="spread-number">10</div>
+  <div class="spread-inner">
+    <span class="badge-applies">🚩 Applies to You</span>
+    <div class="spread-category">YouTube / Creator Economy</div>
+    <h2 class="spread-headline">YouTube Now Allows Profanity in Videos Without Losing Monetization</h2>
+    <div class="spread-divider"></div>
+    <p class="spread-summary">YouTube updated its ad suitability policies this week to allow content creators to include profanity early in both short-form and long-form videos while maintaining full monetization. Previously, strong language in the opening seconds of a video could trigger demonetization or limited ads. YouTube also expanded its AI-powered "Reimagine" editing tool for Shorts to all creators and upgraded thumbnail adjustment tools to better fit larger screens.</p>
+    <a href="https://socialbee.com/blog/youtube-updates/" target="_blank" rel="noopener" class="source-link">Source ↗</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <strong>The Daily Brief</strong> — Automated editorial digest for Spencer Lowder<br>
+  Generated Sunday, June 7, 2026 · 10 stories curated from across the web<br>
+  <span style="opacity:0.5;font-size:0.8rem;">🚩 "Applies to You" stories are flagged as directly relevant to your work as a YouTube creator, VidSummit organizer, and Claude/AI power user.</span>
+</footer>
+
+<script>
+  // Progress bar
+  const bar = document.getElementById('progress-bar');
+  window.addEventListener('scroll', () => {
+    const total = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = total > 0 ? (window.scrollY / total) * 100 : 0;
+    bar.style.width = pct + '%';
+  });
+
+  // Scroll-reveal via IntersectionObserver
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.spread-inner').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
