@@ -9,28 +9,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --cream:#F6EFE3; --ink:#14100C;
-  --navy:#0B1533; --crimson:#7B0D1E; --terminal:#0A1A0F;
-  --ivory:#FAF7EF; --steel:#22384D; --gold:#E0B14A;
+  --cream:#F6EFE3; --ink:#14100C; --navy:#0B1533; --crimson:#7B0D1E;
+  --terminal:#0A1A0F; --ivory:#FAF7EF; --steel:#22384D; --gold:#E0B14A;
   --indigo:#2B2170; --space:#08080B; --sage:#7E9478;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',system-ui,sans-serif;background:#0B1533;overflow-x:hidden}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--navy);overflow-x:hidden}
 
-/* progress bar */
 #bar{position:fixed;top:0;left:0;height:4px;width:0%;z-index:999;
   background:linear-gradient(90deg,#E0B14A,#C8452F,#E0B14A);transition:width .08s linear}
 
-/* masthead */
-.masthead{min-height:100vh;background:#F6EFE3;color:#14100C;display:flex;flex-direction:column;
-  justify-content:center;padding:6vw 6vw 4vw;position:relative}
-.rule{height:6px;background:#14100C;width:100%}
+.masthead{min-height:100vh;background:var(--cream);color:var(--ink);display:flex;
+  flex-direction:column;justify-content:center;padding:6vw 6vw 4vw;position:relative}
+.rule{height:6px;background:var(--ink);width:100%}
 .rule.thin{height:2px;margin-top:6px}
 .masthead h1{font-family:'Fraunces',serif;font-weight:900;font-size:clamp(3.2rem,13vw,12rem);
   line-height:.86;letter-spacing:-.04em;margin:3vw 0}
-.kicker{font-family:'Inter';font-weight:700;text-transform:uppercase;letter-spacing:.42em;
-  font-size:clamp(.72rem,1.15vw,1rem)}
+.kicker{font-weight:700;text-transform:uppercase;letter-spacing:.42em;font-size:clamp(.72rem,1.15vw,1rem)}
 .datestamp{font-family:'Fraunces',serif;font-size:clamp(1.3rem,3.4vw,2.6rem);font-weight:400;
   font-style:italic;margin-top:2vw}
 .meta{display:flex;flex-wrap:wrap;gap:2.5rem;margin-top:4vw;font-size:clamp(.8rem,1.1vw,1rem);
@@ -39,9 +35,8 @@ body{font-family:'Inter',system-ui,sans-serif;background:#0B1533;overflow-x:hidd
   letter-spacing:.4em;text-transform:uppercase;opacity:.5;animation:bob 2.4s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
 
-/* spreads */
-.spread{min-height:100vh;padding:9vh 6vw;display:flex;flex-direction:column;justify-content:center;
-  position:relative;overflow:hidden}
+.spread{min-height:100vh;padding:9vh 6vw;display:flex;flex-direction:column;
+  justify-content:center;position:relative;overflow:hidden}
 .numeral{position:absolute;font-family:'Fraunces',serif;font-weight:900;
   font-size:clamp(11rem,34vw,30rem);line-height:.7;opacity:.075;pointer-events:none;
   top:50%;right:-2vw;transform:translateY(-50%);letter-spacing:-.05em}
@@ -49,7 +44,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:#0B1533;overflow-x:hidd
 .tag{display:inline-block;font-size:clamp(.68rem,.95vw,.85rem);font-weight:700;
   text-transform:uppercase;letter-spacing:.34em;padding:.55em 1.2em;border:2px solid currentColor;
   border-radius:100px;margin-bottom:2.2rem}
-.flag{display:inline-block;margin-left:.7rem;background:#D42A1E;color:#fff;border-color:#D42A1E;
+.flag{margin-left:.7rem;background:#D42A1E;color:#fff;border-color:#D42A1E;
   font-weight:900;letter-spacing:.2em}
 h2{font-family:'Fraunces',serif;font-weight:900;letter-spacing:-.03em;line-height:.95;
   font-size:clamp(2.3rem,6.6vw,6rem);margin-bottom:2.4rem}
@@ -61,28 +56,27 @@ h2{font-family:'Fraunces',serif;font-weight:900;letter-spacing:-.03em;line-heigh
   transition:gap .25s ease,opacity .25s ease}
 .src:hover{gap:1.3rem;opacity:.62}
 
-/* reveal */
-.rv{opacity:0;transform:translateY(48px);transition:opacity .95s cubic-bezier(.2,.7,.3,1),transform .95s cubic-bezier(.2,.7,.3,1)}
+.rv{opacity:0;transform:translateY(48px);
+  transition:opacity .95s cubic-bezier(.2,.7,.3,1),transform .95s cubic-bezier(.2,.7,.3,1)}
 .rv.on{opacity:1;transform:none}
 .rv.d1{transition-delay:.12s}.rv.d2{transition-delay:.24s}.rv.d3{transition-delay:.36s}
 
-/* palettes */
-.s1{background:#F6EFE3;color:#14100C}
-.s2{background:#0B1533;color:#EAF0FF}
-.s3{background:#7B0D1E;color:#FFE9E4}
-.s4{background:#0A1A0F;color:#5DF08A;font-family:'Inter'}
-.s5{background:#FAF7EF;color:#2A2418}
-.s6{background:#22384D;color:#DCEBF7}
-.s7{background:#E0B14A;color:#1A1405}
-.s8{background:#2B2170;color:#E4DFFF}
-.s9{background:#08080B;color:#EDEDF2}
-.s10{background:#7E9478;color:#0E1A0C}
+.s1{background:var(--cream);color:var(--ink)}
+.s2{background:var(--navy);color:#EAF0FF}
+.s3{background:var(--crimson);color:#FFE9E4}
+.s4{background:var(--terminal);color:#5DF08A}
+.s5{background:var(--ivory);color:#2A2418}
+.s6{background:var(--steel);color:#DCEBF7}
+.s7{background:var(--gold);color:#1A1405}
+.s8{background:var(--indigo);color:#E4DFFF}
+.s9{background:var(--space);color:#EDEDF2}
+.s10{background:var(--sage);color:#0E1A0C}
 
-/* colophon */
-.colophon{background:#14100C;color:#F6EFE3;padding:10vh 6vw;text-align:center}
+.colophon{background:var(--ink);color:var(--cream);padding:10vh 6vw;text-align:center}
 .colophon h3{font-family:'Fraunces',serif;font-size:clamp(2rem,5.5vw,4.4rem);font-weight:900;margin-bottom:1.8rem}
 .colophon p{opacity:.6;letter-spacing:.24em;text-transform:uppercase;font-size:.85rem;font-weight:600;line-height:2.1}
 @media(max-width:640px){.summary{max-width:100%}.numeral{right:-6vw;opacity:.06}}
+@media(prefers-reduced-motion:reduce){.rv{transition:none}.scrollcue{animation:none}}
 </style>
 </head>
 <body>
@@ -95,84 +89,84 @@ h2{font-family:'Fraunces',serif;font-weight:900;letter-spacing:-.03em;line-heigh
   <div class="rule thin"></div><div class="rule"></div>
   <div class="datestamp">Thursday, August 13, 2026</div>
   <div class="meta">
-    <span>Ten Stories</span><span>AI · Creators · Science · Policy</span><span>Compiled for Spencer Lowder</span>
+    <span>Ten Stories</span><span>Security · AI · Science</span><span>Compiled for Spencer Lowder</span>
   </div>
   <div class="scrollcue">Scroll ↓</div>
 </header>
 
 <section class="spread s1"><div class="numeral">01</div><div class="inner">
-  <span class="tag rv">Creator Economy</span><span class="tag flag rv d1">🚩 Applies to You</span>
-  <h2 class="rv d1">YouTube doubles the bar to join the Partner Program.</h2>
-  <p class="summary rv d2">YouTube announced Monday that new creators will need 8,000 qualified watch hours in the past year — up from 4,000 — or 20 million qualified Shorts views in 90 days, double the previous 10 million. The change takes effect February 1, 2027. vidIQ called it "raising the bar"; smaller creators called it devastating.</p>
-  <a class="src rv d3" href="https://techcrunch.com/2026/08/10/youtube-now-requires-creators-to-have-twice-as-many-watch-hours-to-start-earning-money/" target="_blank" rel="noopener">Source ↗</a>
+  <span class="tag rv">Security · Aug 11</span><span class="tag flag rv d1">🚩 Applies to You</span>
+  <h2 class="rv d1">One Zoom participant could silently own every device on the call.</h2>
+  <p class="summary rv d2">Zoom patched "Zoomsday" (CVE-2026-53413), a zero-click remote code execution flaw in the annotation feature that hit any call involving screen sharing — host or guest, on Windows, macOS, Linux, iOS and Android. Researchers found and weaponized it using public AI models in under 24 hours and fewer than 20 prompts. Update to Workplace 7.1.5 or 7.0.6.</p>
+  <a class="src rv d3" href="https://www.malwarebytes.com/blog/bugs/2026/08/zoomsday-flaws-could-let-one-zoom-participant-attack-another" target="_blank" rel="noopener">Source ↗</a>
 </div></section>
 
 <section class="spread s2"><div class="numeral">02</div><div class="inner">
-  <span class="tag rv">Security</span><span class="tag flag rv d1">🚩 Applies to You</span>
+  <span class="tag rv">AI Security · Aug 12</span><span class="tag flag rv d1">🚩 Applies to You</span>
   <h2 class="rv d1">Researchers cracked the encrypted reasoning inside every major AI API.</h2>
-  <p class="summary rv d2">A disclosed flaw in how OpenAI, Anthropic and Google pass hidden reasoning between API calls let researchers replay an encrypted block into a weaker sibling model, which printed the hidden content verbatim — including API keys and passwords from session logs. All three providers have patched, though some traces remain recoverable.</p>
+  <p class="summary rv d2">A disclosed flaw in how OpenAI, Anthropic and Google pass hidden reasoning between API calls let researchers replay an encrypted block into a weaker sibling model, which printed the contents verbatim — including API keys and passwords recovered from session logs. All three have since changed their APIs, though some traces remain recoverable.</p>
   <a class="src rv d3" href="https://thehackernews.com/2026/08/openai-anthropic-google-api-flaw-let.html" target="_blank" rel="noopener">Source ↗</a>
 </div></section>
 
 <section class="spread s3"><div class="numeral">03</div><div class="inner">
-  <span class="tag rv">Design Tools</span><span class="tag flag rv d1">🚩 Applies to You</span>
-  <h2 class="rv d1">Figma pulls Weave onto the canvas — and opens it to Claude.</h2>
-  <p class="summary rv d2">Figma brought Weave creative workflows directly into Figma Design and Community, adding 20+ AI image tasks plus a motion timeline with keyframes and presets. As of August 11, the Figma MCP server lets you drive Weave tools from Claude, ChatGPT or Cursor without leaving the chat.</p>
-  <a class="src rv d3" href="https://www.figma.com/release-notes/" target="_blank" rel="noopener">Source ↗</a>
+  <span class="tag rv">Supply Chain · Aug 11</span>
+  <h2 class="rv d1">A poisoned LiteLLM package reached 434,000 build pipelines.</h2>
+  <p class="summary rv d2">CloudSEK reported that Team PCP compromised LiteLLM's PyPI packages 1.82.7 and 1.82.8 by way of the Trivy scanner inside its build pipeline, staying undetected for roughly 20 days. Potentially exposed: AWS, GCP and Azure credentials, SSH keys, Kubernetes tokens and LLM API keys across 2,500+ organizations including Nvidia, AWS, Cisco and Salesforce.</p>
+  <a class="src rv d3" href="https://www.cloudsek.com/blog/ai-supply-chain-breach-2500-companies-434000-cicd-pipelines" target="_blank" rel="noopener">Source ↗</a>
 </div></section>
 
 <section class="spread s4"><div class="numeral">04</div><div class="inner">
-  <span class="tag rv">AI Provenance</span><span class="tag flag rv d1">🚩 Applies to You</span>
-  <h2 class="rv d1">Anthropic starts watermarking Claude's text and images.</h2>
-  <p class="summary rv d2">Anthropic began embedding invisible watermarks in Claude-generated text and images, arriving as regulators push for permanent provenance marks on synthetic content. For anyone shipping AI-assisted scripts, thumbnails or copy, the output now carries a traceable signal.</p>
-  <a class="src rv d3" href="https://techstartups.com/2026/08/12/top-tech-news-today-august-12-2026-anthropic-google-ibm-lovable-nvidia-openai-more/" target="_blank" rel="noopener">Source ↗</a>
+  <span class="tag rv">Models · Aug 12</span><span class="tag flag rv d1">🚩 Applies to You</span>
+  <h2 class="rv d1">xAI ships Grok 4.6 and aims it at long-running agents.</h2>
+  <p class="summary rv d2">Grok 4.6 reuses the same 1.5-trillion-parameter foundation as 4.5, taking its gains from fine-tuning and RL rather than scale, with a focus on multi-step agent work and visual output. xAI says it matches GPT-5.6 Sol on the Artificial Analysis index at $2 per million input tokens and $6 output — roughly half its rivals. A 2.1T Grok 4.7 is slated within weeks.</p>
+  <a class="src rv d3" href="https://x.ai/news/grok-4-6" target="_blank" rel="noopener">Source ↗</a>
 </div></section>
 
 <section class="spread s5"><div class="numeral">05</div><div class="inner">
-  <span class="tag rv">Infrastructure</span>
+  <span class="tag rv">Infrastructure · Aug 12</span>
   <h2 class="rv d1">Anthropic signs a $9.1 billion, 20-year power deal with Riot Platforms.</h2>
-  <p class="summary rv d2">The agreement secures 191 megawatts from a Texas facility over two decades — a former bitcoin miner turned AI landlord. It lands the same week Anthropic began meeting investors ahead of a possible public-market debut this fall.</p>
+  <p class="summary rv d2">The agreement secures 191 megawatts from a Texas facility over two decades — another former bitcoin miner converting itself into an AI landlord. Compute contracts of this length are becoming the real moat in frontier AI, and they are increasingly written in megawatts rather than GPUs.</p>
   <a class="src rv d3" href="https://techstartups.com/2026/08/12/top-tech-news-today-august-12-2026-anthropic-google-ibm-lovable-nvidia-openai-more/" target="_blank" rel="noopener">Source ↗</a>
 </div></section>
 
 <section class="spread s6"><div class="numeral">06</div><div class="inner">
-  <span class="tag rv">Capital</span>
+  <span class="tag rv">Capital · Aug 12</span>
   <h2 class="rv d1">Nvidia assembles a $500 billion financing alliance.</h2>
-  <p class="summary rv d2">Nvidia formed a half-trillion-dollar funding vehicle with Apollo, Blackstone, BlackRock, Brookfield, Goldman Sachs and KKR to bankroll AI infrastructure. The scale marks a shift: the race is no longer about models, but about energy, chips and physical supply chains.</p>
+  <p class="summary rv d2">Nvidia formed a half-trillion-dollar funding vehicle with Apollo, Blackstone, BlackRock, Brookfield, Goldman Sachs and KKR to bankroll AI infrastructure. The scale signals where the competition has moved: not to better models, but to energy, chips and the physical supply chain underneath them.</p>
   <a class="src rv d3" href="https://www.buildfastwithai.com/blogs/ai-news-today-august-12-2026" target="_blank" rel="noopener">Source ↗</a>
 </div></section>
 
 <section class="spread s7"><div class="numeral">07</div><div class="inner">
-  <span class="tag rv">Education</span>
-  <h2 class="rv d1">Anthropic unveils Claude for Teachers.</h2>
-  <p class="summary rv d2">Announced August 11, the classroom product puts Anthropic head-to-head with OpenAI and Google in the scramble to own school AI. It follows a pattern of vendors racing to establish habits with students before districts settle on procurement rules.</p>
-  <a class="src rv d3" href="https://ktvz.com/stacker-ai/2026/08/11/anthropic-unveils-claude-for-teachers-joining-openai-and-google-in-race-to-dominate-classroom-ai/" target="_blank" rel="noopener">Source ↗</a>
+  <span class="tag rv">Scale · Aug 12</span>
+  <h2 class="rv d1">Gemini passes a billion monthly users — and makes 150 million images a day.</h2>
+  <p class="summary rv d2">Sundar Pichai said the Gemini app is Google's fastest-growing product ever and its 14th to reach a billion users. The usage mix is the interesting part: 63% of interactions are voice, and one in five Gemini Live sessions involves live camera or screen sharing. Text is no longer the default way people reach a model.</p>
+  <a class="src rv d3" href="https://www.buildfastwithai.com/blogs/ai-news-today-august-12-2026" target="_blank" rel="noopener">Source ↗</a>
 </div></section>
 
 <section class="spread s8"><div class="numeral">08</div><div class="inner">
-  <span class="tag rv">Scale</span>
-  <h2 class="rv d1">ChatGPT crosses one billion users.</h2>
-  <p class="summary rv d2">OpenAI reported the milestone this week, weeks after Google disclosed comparable reach for Gemini across Search, Gmail and Android. Two frontier assistants now sit in front of a combined audience larger than any single social platform.</p>
-  <a class="src rv d3" href="https://techstartups.com/2026/08/11/top-tech-news-today-august-11-2026-anthropic-intel-meta-openai-nvidia-unitree-more/" target="_blank" rel="noopener">Source ↗</a>
+  <span class="tag rv">Markets · Aug 12</span>
+  <h2 class="rv d1">Anthropic starts meeting investors ahead of a possible fall listing.</h2>
+  <p class="summary rv d2">According to the Wall Street Journal, Anthropic is in conversations with potential investors as it prepares for a public-market debut that could come this fall. It would be the first frontier lab to test whether public markets will underwrite compute commitments measured in decades.</p>
+  <a class="src rv d3" href="https://techstartups.com/2026/08/12/top-tech-news-today-august-12-2026-anthropic-google-ibm-lovable-nvidia-openai-more/" target="_blank" rel="noopener">Source ↗</a>
 </div></section>
 
 <section class="spread s9"><div class="numeral">09</div><div class="inner">
-  <span class="tag rv">Physics</span>
+  <span class="tag rv">Physics · Aug 7</span>
   <h2 class="rv d1">Sunlight produced quantum entanglement for the first time.</h2>
-  <p class="summary rv d2">A University of Ottawa and Max Planck Institute team concentrated sunlight gathered over 1.4 square meters into a nonlinear crystal, generating polarization-entangled photons at nearly 94% fidelity and violating Bell's inequality. Published in Optica, it overturns the assumption that entanglement requires lasers.</p>
+  <p class="summary rv d2">A University of Ottawa and Max Planck Institute team concentrated sunlight gathered over 1.4 square meters into a nonlinear crystal, generating polarization-entangled photons at nearly 94% fidelity with correlations that violated Bell's inequality. Published in Optica, it overturns the assumption that entanglement requires laser light.</p>
   <a class="src rv d3" href="https://www.sciencedaily.com/releases/2026/08/260807035133.htm" target="_blank" rel="noopener">Source ↗</a>
 </div></section>
 
 <section class="spread s10"><div class="numeral">10</div><div class="inner">
-  <span class="tag rv">Policy</span>
-  <h2 class="rv d1">The EU AI Act goes fully live as California's Delete Act bites.</h2>
-  <p class="summary rv d2">The EU AI Act became fully applicable this month, carrying fines up to 7% of global turnover for prohibited practices. In parallel, California data brokers have been required to process deletion requests since August 1 under the Delete Act — with ongoing maintenance obligations from here.</p>
-  <a class="src rv d3" href="https://www.mondaq.com/unitedstates/privacy-protection/1829974/global-data-protection-insights-august-2026" target="_blank" rel="noopener">Source ↗</a>
+  <span class="tag rv">Aviation · Aug 12</span>
+  <h2 class="rv d1">Space weather is a bigger problem for aircraft than assumed.</h2>
+  <p class="summary rv d2">Surrey Space Centre researchers found that extreme solar events meaningfully raise radiation exposure at cruising altitudes of 8–14 km while triggering single-event upsets in onboard electronics — small faults that accumulate into disrupted systems. Published in the Journal of Space Weather and Space Climate.</p>
+  <a class="src rv d3" href="https://techxplore.com/news/2026-08-extreme-space-weather-disrupt-flights.html" target="_blank" rel="noopener">Source ↗</a>
 </div></section>
 
 <footer class="colophon">
   <h3>End of Brief</h3>
-  <p>Thursday, August 13, 2026<br>Compiled automatically · Ten stories · Four flagged</p>
+  <p>Thursday, August 13, 2026<br>Ten stories · Three flagged · Checked against the Aug 10–12 editions for overlap</p>
 </footer>
 
 <script>
