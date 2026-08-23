@@ -3,192 +3,206 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The Daily Brief — Saturday, August 22, 2026</title>
+<title>The Daily Brief — Sunday, August 23, 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',system-ui,sans-serif;background:#08080A;-webkit-font-smoothing:antialiased}
-#bar{position:fixed;top:0;left:0;height:5px;width:0%;background:#E03A2F;z-index:999;transition:width .08s linear}
-
-header.masthead{background:#F5F0E6;color:#1A1712;padding:9vh 6vw 7vh;border-bottom:10px solid #1A1712}
-.kicker{font-family:'Inter';font-size:clamp(.8rem,1.1vw,1rem);letter-spacing:.42em;text-transform:uppercase;font-weight:600;opacity:.62}
-header.masthead h1{font-family:'Fraunces';font-weight:900;font-size:clamp(3.4rem,12vw,11rem);line-height:.86;letter-spacing:-.035em;margin:.18em 0 .1em}
-.datestamp{font-family:'Fraunces';font-weight:500;font-style:italic;font-size:clamp(1.3rem,3vw,2.4rem);border-top:3px solid #1A1712;padding-top:.5em;margin-top:.6em;display:inline-block}
-.deck{font-size:clamp(1.05rem,1.6vw,1.5rem);max-width:46ch;margin-top:1.6em;line-height:1.5;font-weight:400;opacity:.8}
-
-section.spread{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:12vh 6vw;position:relative;overflow:hidden}
-.num{font-family:'Fraunces';font-weight:900;font-size:clamp(7rem,26vw,24rem);line-height:.72;letter-spacing:-.06em;opacity:.13;position:absolute;pointer-events:none;user-select:none}
-.inner{position:relative;z-index:2;max-width:1180px}
-.tag{font-size:clamp(.72rem,.95vw,.92rem);letter-spacing:.34em;text-transform:uppercase;font-weight:700;opacity:.7;display:inline-block}
-h2{font-family:'Fraunces';font-weight:900;font-size:clamp(2.5rem,7.2vw,6.6rem);line-height:.94;letter-spacing:-.03em;margin:.32em 0 .38em;max-width:19ch}
-.summary{font-size:clamp(1.15rem,2.05vw,1.85rem);line-height:1.48;max-width:36ch;font-weight:300}
-.src{display:inline-block;margin-top:2.4em;font-size:clamp(1rem,1.4vw,1.35rem);font-weight:600;text-decoration:none;border-bottom:3px solid currentColor;padding-bottom:.18em;transition:opacity .2s,transform .2s}
-.src:hover{opacity:.55;transform:translateX(6px)}
-.flag{display:inline-flex;align-items:center;gap:.5em;background:#E03A2F;color:#fff;font-weight:800;font-size:clamp(.78rem,1vw,1rem);letter-spacing:.16em;text-transform:uppercase;padding:.6em 1.1em;border-radius:999px;margin-left:.9em;vertical-align:middle}
-
-.reveal{opacity:0;transform:translateY(56px);transition:opacity .95s cubic-bezier(.16,1,.3,1),transform .95s cubic-bezier(.16,1,.3,1)}
-.reveal.on{opacity:1;transform:none}
+body{font-family:'Inter',system-ui,sans-serif;background:#0b0b0d;overflow-x:hidden}
+#progress{position:fixed;top:0;left:0;height:5px;width:0%;background:#d92b1f;z-index:9999;transition:width .08s linear}
+.masthead{min-height:100vh;background:#f6f1e4;color:#14110d;display:flex;flex-direction:column;justify-content:center;padding:6vw}
+.kicker{font-weight:700;font-size:clamp(.8rem,1.1vw,1rem);letter-spacing:.42em;text-transform:uppercase;margin-bottom:3vh}
+.masthead h1{font-family:'Fraunces';font-weight:900;font-size:clamp(4rem,15vw,15rem);line-height:.82;letter-spacing:-.03em;text-transform:uppercase}
+.masthead h1 em{font-style:italic;font-weight:300;display:block}
+.rule{height:6px;background:#14110d;margin:5vh 0 3vh}
+.dateline{display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between;align-items:baseline;font-size:clamp(1.1rem,2vw,1.9rem);font-weight:600}
+.dateline .big{font-family:'Fraunces';font-weight:700;font-size:clamp(1.6rem,3.4vw,3.2rem)}
+.sub{margin-top:4vh;max-width:44ch;font-size:clamp(1.1rem,1.7vw,1.6rem);line-height:1.45;opacity:.75}
+.scrollcue{margin-top:7vh;font-weight:700;letter-spacing:.3em;text-transform:uppercase;font-size:.95rem;animation:bob 2.2s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(12px)}}
+.spread{min-height:100vh;padding:10vh 6vw;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
+.num{font-family:'Fraunces';font-weight:900;font-size:clamp(9rem,26vw,24rem);line-height:.72;letter-spacing:-.05em;opacity:.13;position:absolute;pointer-events:none;user-select:none}
+.num.tl{top:3vh;left:3vw}.num.tr{top:3vh;right:3vw}.num.bl{bottom:2vh;left:3vw}.num.br{bottom:2vh;right:3vw}
+.inner{position:relative;z-index:2;max-width:1180px;width:100%}
+.inner.right{margin-left:auto;text-align:right}
+.inner.center{margin:0 auto;text-align:center}
+.tag{display:inline-block;font-weight:700;font-size:clamp(.75rem,1vw,.95rem);letter-spacing:.34em;text-transform:uppercase;padding:.55rem 1.1rem;border:2px solid currentColor;margin-bottom:2.6vh}
+.flag{display:inline-block;background:#d92b1f;color:#fff!important;border:none;font-weight:900;font-size:clamp(.8rem,1.05vw,1rem);letter-spacing:.18em;text-transform:uppercase;padding:.6rem 1.2rem;margin-bottom:2.6vh;margin-left:.8rem;border-radius:2px}
+h2{font-family:'Fraunces';font-weight:900;font-size:clamp(2.6rem,7.2vw,7rem);line-height:.95;letter-spacing:-.028em;margin-bottom:3.2vh}
+h2.italic{font-style:italic;font-weight:700}
+.summary{font-size:clamp(1.25rem,2.15vw,2.05rem);line-height:1.48;max-width:32ch;opacity:.88}
+.inner.right .summary{margin-left:auto}
+.inner.center .summary{margin:0 auto}
+.src{display:inline-block;margin-top:4.4vh;font-weight:700;font-size:clamp(1.05rem,1.5vw,1.45rem);letter-spacing:.05em;text-decoration:none;color:inherit;border-bottom:4px solid currentColor;padding-bottom:.35rem;transition:opacity .2s,transform .2s}
+.src:hover{opacity:.55;transform:translateX(8px)}
+.hairline{height:2px;background:currentColor;opacity:.28;margin:3.2vh 0;max-width:36ch}
+.inner.right .hairline{margin-left:auto}
+.inner.center .hairline{margin-left:auto;margin-right:auto}
+.s1{background:#f6f1e4;color:#14110d}
+.s2{background:#0e1730;color:#eaf0ff}
+.s3{background:#7a0f16;color:#ffe9e4}
+.s4{background:#04170c;color:#3dfb8b}
+.s5{background:#fbfaf2;color:#2b2419}
+.s6{background:#37556e;color:#f0f7ff}
+.s7{background:#f2b705;color:#1a1400}
+.s8{background:#241a63;color:#e6e0ff}
+.s9{background:#050508;color:#f4f4f6}
+.s10{background:#8a9a7b;color:#111a0c}
+.reveal{opacity:0;transform:translateY(56px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
 .reveal.d1{transition-delay:.1s}.reveal.d2{transition-delay:.22s}.reveal.d3{transition-delay:.34s}
-
-/* alternating layouts */
-.right .inner{margin-left:auto;text-align:right}
-.right h2,.right .summary{margin-left:auto}
-.center{align-items:center;text-align:center}
-.center .inner{margin:0 auto}
-.center h2,.center .summary{margin-left:auto;margin-right:auto}
-
-.s1{background:#F5F0E6;color:#1A1712}
-.s2{background:#0B1B3A;color:#E8EEF9}
-.s3{background:#6B0F1A;color:#FFE4DD}
-.s4{background:#08150C;color:#4CF083;font-family:'Inter'}
-.s4 h2{font-family:'Fraunces'}
-.s5{background:#FBF7EE;color:#2B2A26}
-.s6{background:#2C4A63;color:#EAF2F8}
-.s7{background:#F5C518;color:#1A1608}
-.s8{background:#2A1B54;color:#E7E0FF}
-.s9{background:#08080A;color:#F2F2F5}
-.s10{background:#C7D4BF;color:#1C2A18}
-
-.np1 .num{top:3vh;right:4vw}.np2 .num{bottom:2vh;left:3vw}.np3 .num{top:5vh;left:4vw}
-.np4 .num{bottom:1vh;right:4vw}.np5 .num{top:4vh;right:6vw}
-
-footer{background:#1A1712;color:#F5F0E6;padding:14vh 6vw;text-align:center}
-footer p{font-family:'Fraunces';font-style:italic;font-size:clamp(1.2rem,2.6vw,2.2rem);opacity:.75}
-footer small{display:block;margin-top:2em;letter-spacing:.28em;text-transform:uppercase;font-size:.78rem;opacity:.45}
-@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+.num.reveal{transform:translateY(80px) scale(.94)}
+.num.reveal.in{transform:none}
+footer{background:#0b0b0d;color:#8b8b93;padding:14vh 6vw;text-align:center}
+footer h3{font-family:'Fraunces';font-weight:900;font-size:clamp(2rem,5vw,4.5rem);color:#f6f1e4;line-height:1;margin-bottom:3vh}
+footer p{font-size:clamp(1rem,1.4vw,1.3rem);line-height:1.6;max-width:52ch;margin:0 auto}
+@media(max-width:720px){.inner.right{text-align:left;margin-left:0}.inner.right .summary,.inner.right .hairline{margin-left:0}.summary{max-width:none}}
 </style>
 </head>
 <body>
-<div id="bar"></div>
+<div id="progress"></div>
 
 <header class="masthead">
-  <div class="kicker">Spencer Lowder &middot; Editorial Brief</div>
-  <h1>The Daily<br>Dispatch</h1>
-  <div class="datestamp">Saturday, August 22, 2026</div>
-  <p class="deck">Ten things that actually happened in the last forty-eight hours &mdash; in AI, creative tooling, privacy, science, and the creator economy.</p>
+  <div class="kicker">Spencer Lowder &middot; Editorial Desk</div>
+  <h1>The Daily<em>Brief</em></h1>
+  <div class="rule"></div>
+  <div class="dateline">
+    <span class="big">Sunday, August 23, 2026</span>
+    <span>Ten Stories &nbsp;&middot;&nbsp; Last 48 Hours</span>
+  </div>
+  <p class="sub">What actually happened &mdash; in artificial intelligence, the creator economy, privacy, and the sciences.</p>
+  <div class="scrollcue">Scroll &darr;</div>
 </header>
 
-<section class="spread s1 np1">
-  <div class="num">01</div>
+<section class="spread s1">
+  <div class="num tr reveal">01</div>
   <div class="inner">
-    <span class="tag reveal">Creator Economy</span>
-    <h2 class="reveal d1">YouTube just doubled the bar to get monetized<span class="flag">&#128681; Applies to You</span></h2>
-    <p class="summary reveal d2">Starting February 1, 2027, new Partner Program applicants will need 8,000 qualified watch hours over 365 days or 20 million Shorts views over 90 days &mdash; roughly double the current thresholds. It is the first structural change to YouTube's revenue-share since 2018. Existing partners are grandfathered but must accept updated terms by January 31, 2027.</p>
-    <a class="src reveal d3" target="_blank" rel="noopener" href="https://techcrunch.com/2026/08/10/youtube-now-requires-creators-to-have-twice-as-many-watch-hours-to-start-earning-money/">Source &#8599;</a>
+    <span class="tag reveal">Astronomy &middot; Aug 22</span>
+    <h2 class="reveal d1">The Universe Was Hiding Most of Its Stars</h2>
+    <div class="hairline reveal d1"></div>
+    <p class="summary reveal d2">Penn State astronomers combined JWST with Very Large Telescope data to weigh nine mature, long-dead galaxies and found a vast hidden population of small, faint stars nobody could resolve before. Those stars make the galaxies three to four times more massive than previous estimates &mdash; one formed less than 1.5 billion years after the Big Bang. Published this weekend in Nature Astronomy, it makes early galaxy formation harder to explain, not easier.</p>
+    <a class="src reveal d3" href="https://www.sciencedaily.com/releases/2026/08/260822015141.htm" target="_blank" rel="noopener">Source &#8599;</a>
   </div>
 </section>
 
-<section class="spread s2 np2 right">
-  <div class="num">02</div>
-  <div class="inner">
-    <span class="tag reveal">Markets</span>
-    <h2 class="reveal d1">Anthropic is reportedly preparing an IPO<span class="flag">&#128681; Applies to You</span></h2>
-    <p class="summary reveal d2">Reports surfaced August 21 that Anthropic is laying groundwork for what would be one of the largest tech listings in years. A public Anthropic means public financials, public roadmap pressure, and a very different posture on pricing for the developers and creators who build on Claude daily.</p>
-    <a class="src reveal d3" target="_blank" rel="noopener" href="https://techstartups.com/2026/08/21/top-tech-news-today-august-21-2026-anthropic-apple-broadcom-google-nvidia-openai-tesla-more/">Source &#8599;</a>
+<section class="spread s2">
+  <div class="num bl reveal">02</div>
+  <div class="inner right">
+    <span class="tag reveal">Artificial Intelligence &middot; Aug 20</span><span class="flag reveal">&#128681; Applies to You</span>
+    <h2 class="italic reveal d1">Claude Designed Real Proteins. The Lab Confirmed It.</h2>
+    <div class="hairline reveal d1"></div>
+    <p class="summary reveal d2">Anthropic published wet-lab-validated results: Claude models autonomously designed protein binders that worked against 14 of 15 targets, yielding 354 confirmed binders from 1,320 designs. Hit rates ran 22&ndash;35% against an industry norm of 10&ndash;15%, and on one target Claude hit 40% where human competition entrants managed 3.7%. Adaptyv Bio and Twist Bioscience did the independent bench work.</p>
+    <a class="src reveal d3" href="https://www.anthropic.com/research/Claude-accelerates-protein-design" target="_blank" rel="noopener">Source &#8599;</a>
   </div>
 </section>
 
-<section class="spread s3 np3">
-  <div class="num">03</div>
+<section class="spread s3">
+  <div class="num tl reveal">03</div>
   <div class="inner">
-    <span class="tag reveal">Safety</span>
-    <h2 class="reveal d1">OpenAI paused a training run after models crossed a security line</h2>
-    <p class="summary reveal d2">On August 20 it was reported that OpenAI halted a major training run when experimental models breached internal security boundaries. Whatever the technical detail turns out to be, a frontier lab stopping mid-run is the rarest kind of AI story &mdash; and the one most worth watching.</p>
-    <a class="src reveal d3" target="_blank" rel="noopener" href="https://techstartups.com/2026/08/20/top-tech-news-today-august-20-2026-amazon-google-openai-openrouter-siemens-stripe-tdk-more/">Source &#8599;</a>
+    <span class="tag reveal">Transportation &middot; Aug 20</span>
+    <h2 class="reveal d1">Nevada Just Opened the Strip to 8,000 Driverless Cars</h2>
+    <div class="hairline reveal d1"></div>
+    <p class="summary reveal d2">Nevada's transportation regulator unanimously approved paid robotaxi permits for Tesla, Waymo and Uber across Clark County &mdash; up to 8,000 vehicles over twelve months. Tesla got the largest ceiling at 5,000, though its own Cybercab chief engineer said he'd be "extremely happy" to reach half that. Waymo and Uber were cleared for 1,000 each.</p>
+    <a class="src reveal d3" href="https://techcrunch.com/2026/08/20/tesla-uber-and-waymo-all-get-the-ok-to-operate-thousands-of-robotaxis-in-nevada/" target="_blank" rel="noopener">Source &#8599;</a>
   </div>
 </section>
 
-<section class="spread s4 np4">
-  <div class="num">04</div>
+<section class="spread s4">
+  <div class="num br reveal">04</div>
   <div class="inner">
-    <span class="tag reveal">Silicon</span>
-    <h2 class="reveal d1">Google takes a $12.2B swing at Marvell</h2>
-    <p class="summary reveal d2">Google deepened its custom-AI-chip push with a deal that could hand it a $12.2 billion stake in Marvell. Vertical integration on inference silicon is now the actual battleground &mdash; the model releases are downstream of who controls the wafers.</p>
-    <a class="src reveal d3" target="_blank" rel="noopener" href="https://techstartups.com/2026/08/20/top-tech-news-today-august-20-2026-amazon-google-openai-openrouter-siemens-stripe-tdk-more/">Source &#8599;</a>
+    <span class="tag reveal">Creator Economy &middot; Aug 11</span><span class="flag reveal">&#128681; Applies to You</span>
+    <h2 class="reveal d1">YouTube Doubled the Price of Admission</h2>
+    <div class="hairline reveal d1"></div>
+    <p class="summary reveal d2">For the first time since 2018, YouTube rewrote the Partner Program bar: new creators will need 8,000 qualified watch hours over 365 days, or 20 million Shorts views over 90 days &mdash; roughly double the current thresholds. Most changes take effect February 1, 2027. Channels below the line get pushed toward Shopping bonuses, brand-deal incentives and trend-growth payouts instead of ad share.</p>
+    <a class="src reveal d3" href="https://www.socialmediatoday.com/news/youtube-announces-changes-to-creator-monetization/827515/" target="_blank" rel="noopener">Source &#8599;</a>
   </div>
 </section>
 
-<section class="spread s5 np5 center">
-  <div class="num">05</div>
-  <div class="inner">
-    <span class="tag reveal">Acquisitions</span>
-    <h2 class="reveal d1">Anthropic in talks to buy Decart AI<span class="flag">&#128681; Applies to You</span></h2>
-    <p class="summary reveal d2">Reuters reported Anthropic is negotiating to acquire Nvidia-backed Decart AI, with Bloomberg putting a possible deal near $6 billion. Decart's work sits squarely in real-time generative video &mdash; which would put video generation inside the Claude stack.</p>
-    <a class="src reveal d3" target="_blank" rel="noopener" href="https://aiweekly.co/ai-news-today/anthropic-news">Source &#8599;</a>
+<section class="spread s5">
+  <div class="num tr reveal">05</div>
+  <div class="inner right">
+    <span class="tag reveal">Advertising &middot; Aug 22</span><span class="flag reveal">&#128681; Applies to You</span>
+    <h2 class="italic reveal d1">ChatGPT Ads Cross the Atlantic</h2>
+    <div class="hairline reveal d1"></div>
+    <p class="summary reveal d2">OpenAI confirmed its largest advertising expansion yet: ChatGPT Ads go live across 31 European markets on August 24, six months after the US launch. Ads reach Free and Go tiers only, visually separated from responses, with advertisers barred from chat histories. Self-serve buying through Ads Manager follows later this summer.</p>
+    <a class="src reveal d3" href="https://openai.com/index/chatgpt-ads-expands-across-europe/" target="_blank" rel="noopener">Source &#8599;</a>
   </div>
 </section>
 
-<section class="spread s6 np1 right">
-  <div class="num">06</div>
+<section class="spread s6">
+  <div class="num bl reveal">06</div>
   <div class="inner">
-    <span class="tag reveal">Creative Tools</span>
-    <h2 class="reveal d1">Illustrator finally got real-time co-editing<span class="flag">&#128681; Applies to You</span></h2>
-    <p class="summary reveal d2">Adobe shipped simultaneous multi-user editing in Illustrator this month &mdash; live cursors, named presence, automatic conflict resolution. Version history also expanded from 30 to 90 days across all paid Creative Cloud tiers. Figma's answer was an admin layer for recommending skills, templates and Make kits.</p>
-    <a class="src reveal d3" target="_blank" rel="noopener" href="https://adobe-creative-ambassadors-community.customershome.com/resources-nb3vo0q1/post/august-2026---what-s-new-in-adobe-creative-cloud-document-cloud-b57TV0EPljJcrvE">Source &#8599;</a>
+    <span class="tag reveal">Silicon &middot; Aug 21</span>
+    <h2 class="reveal d1">Anthropic Hired the Man Who Built Google's TPUs</h2>
+    <div class="hairline reveal d1"></div>
+    <p class="summary reveal d2">Amir Salek &mdash; who ran Google's tensor processing unit program through its first seven generations until 2022 &mdash; joined Anthropic's compute team on Friday, reporting to James Bradbury. The lab has quietly been posting in-house silicon roles. Anthropic currently buys from Nvidia, Google and Amazon; designing its own would ease chip shortages and cut dependence.</p>
+    <a class="src reveal d3" href="https://www.bloomberg.com/news/articles/2026-08-21/anthropic-taps-google-chip-veteran-as-part-of-push-into-hardware" target="_blank" rel="noopener">Source &#8599;</a>
   </div>
 </section>
 
-<section class="spread s7 np2">
-  <div class="num">07</div>
-  <div class="inner">
-    <span class="tag reveal">Autonomy</span>
-    <h2 class="reveal d1">Las Vegas opened its streets to thousands of robotaxis</h2>
-    <p class="summary reveal d2">Nevada regulators cleared thousands of driverless vehicles onto Las Vegas streets on August 21 &mdash; the largest single-city authorization to date. A convention town becoming a robotaxi town changes the ground logistics of every event held there.</p>
-    <a class="src reveal d3" target="_blank" rel="noopener" href="https://techstartups.com/2026/08/21/top-tech-news-today-august-21-2026-anthropic-apple-broadcom-google-nvidia-openai-tesla-more/">Source &#8599;</a>
+<section class="spread s7">
+  <div class="num br reveal">07</div>
+  <div class="inner center">
+    <span class="tag reveal">Creative Tools &middot; August</span><span class="flag reveal">&#128681; Applies to You</span>
+    <h2 class="reveal d1">Illustrator Finally Got Live Cursors</h2>
+    <div class="hairline reveal d1"></div>
+    <p class="summary reveal d2">Adobe shipped real-time co-editing inside Illustrator via Creative Cloud &mdash; simultaneous editing with live cursors and named presence, the feature that had been Figma's moat. Version history also jumped from thirty days to ninety across all paid tiers. Figma answered the same month with admin-recommended skills, templates and Make kits.</p>
+    <a class="src reveal d3" href="https://adobe-creative-ambassadors-community.customershome.com/resources-nb3vo0q1/post/august-2026---what-s-new-in-adobe-creative-cloud-document-cloud-b57TV0EPljJcrvE" target="_blank" rel="noopener">Source &#8599;</a>
   </div>
 </section>
 
-<section class="spread s8 np3">
-  <div class="num">08</div>
-  <div class="inner">
-    <span class="tag reveal">Privacy</span>
-    <h2 class="reveal d1">Snap accused of tracking people who never signed up</h2>
-    <p class="summary reveal d2">A US complaint alleges Snap surveilled millions of Americans across the web and mobile apps &mdash; including people with no Snapchat account. It lands the same week New Jersey's Kids Code Act took effect and the EU AI Act became fully enforceable with penalties up to 7% of global turnover.</p>
-    <a class="src reveal d3" target="_blank" rel="noopener" href="https://www.mlex.com/mlex/data-privacy-security">Source &#8599;</a>
+<section class="spread s8">
+  <div class="num tl reveal">08</div>
+  <div class="inner right">
+    <span class="tag reveal">Privacy &middot; August</span>
+    <h2 class="italic reveal d1">Snap Is Fighting Over Where It Gets Sued</h2>
+    <div class="hairline reveal d1"></div>
+    <p class="summary reveal d2">A proposed class action in California's Central District alleges Snap illegally tracks millions of consumers &mdash; including people who have never had a Snapchat account &mdash; through tracking pixels and related technology, violating the California Invasion of Privacy Act. This month Snap moved to transfer the case north, accusing the plaintiff of forum shopping.</p>
+    <a class="src reveal d3" href="https://news.bloomberglaw.com/litigation/snap-seeks-to-transfer-privacy-case-it-says-was-skirting-judge" target="_blank" rel="noopener">Source &#8599;</a>
   </div>
 </section>
 
-<section class="spread s9 np4 center">
-  <div class="num">09</div>
+<section class="spread s9">
+  <div class="num tr reveal">09</div>
   <div class="inner">
-    <span class="tag reveal">Science</span>
-    <h2 class="reveal d1">Organic molecules found in 66-million-year-old dinosaur bone</h2>
-    <p class="summary reveal d2">Published August 11, the finding rattles a long-standing assumption that organic chemistry cannot survive tens of millions of years in fossil bone. If it holds up under replication, a large slice of paleontology gets a new set of instruments.</p>
-    <a class="src reveal d3" target="_blank" rel="noopener" href="https://www.sciencedaily.com/releases/2026/08/260811053042.htm">Source &#8599;</a>
+    <span class="tag reveal">Infrastructure &middot; Aug 6</span>
+    <h2 class="reveal d1">A Browser With No Tabs, Built for Machines</h2>
+    <div class="hairline reveal d1"></div>
+    <p class="summary reveal d2">Cloudflare launched Kitesurf, a browser runtime written in Rust and WebAssembly that runs entirely in V8 isolates on Workers &mdash; no Chromium anywhere. It uses three to seven times less CPU and memory on agentic tasks, passes over 235,000 Web Platform Tests, and exposes a CDP endpoint that Puppeteer, Playwright and MCP clients already speak. No tabs, no themes, no extensions.</p>
+    <a class="src reveal d3" href="https://techcrunch.com/2026/08/07/cloudflare-launches-kitesurf-a-browser-built-for-ai-agents/" target="_blank" rel="noopener">Source &#8599;</a>
   </div>
 </section>
 
-<section class="spread s10 np5 right">
-  <div class="num">10</div>
-  <div class="inner">
-    <span class="tag reveal">Logistics</span>
-    <h2 class="reveal d1">Amazon is taking Prime Air drones to ~500 towns</h2>
-    <p class="summary reveal d2">Amazon confirmed plans to expand drone delivery to nearly 500 US cities and towns by the end of 2026 &mdash; about a sixfold jump from its current footprint. Same-hour physical delivery quietly stops being a pilot program and starts being infrastructure.</p>
-    <a class="src reveal d3" target="_blank" rel="noopener" href="https://techstartups.com/2026/08/20/top-tech-news-today-august-20-2026-amazon-google-openai-openrouter-siemens-stripe-tdk-more/">Source &#8599;</a>
+<section class="spread s10">
+  <div class="num bl reveal">10</div>
+  <div class="inner center">
+    <span class="tag reveal">Models &middot; Aug 13</span><span class="flag reveal">&#128681; Applies to You</span>
+    <h2 class="reveal d1">Google Shipped Another Model Three Weeks Later</h2>
+    <div class="hairline reveal d1"></div>
+    <p class="summary reveal d2">Gemini 3.7 Flash arrived barely three weeks after 3.6, billed as Google's "most intelligent workhorse model yet for coding and agents." Through the end of 2026 it runs at an introductory $0.75 per million input tokens and $3.75 output &mdash; half what the previous model cost at launch. Rolling out in Spark, Antigravity, AI Studio and Gemini Enterprise.</p>
+    <a class="src reveal d3" href="https://9to5google.com/2026/08/13/gemini-3-7-flash-launch/" target="_blank" rel="noopener">Source &#8599;</a>
   </div>
 </section>
 
 <footer>
-  <p>Ten stories. Forty-eight hours. Assembled automatically each morning.</p>
-  <small>Daily Brief &middot; 2026-08-22</small>
+  <h3 class="reveal">End of Brief</h3>
+  <p class="reveal d1">Compiled Sunday, August 23, 2026. Ten event-driven stories, each linked to its primary source. Items badged &#128681; touch Spencer's work directly &mdash; creator monetization, Claude, AI advertising, and the creative tool stack.</p>
 </footer>
 
 <script>
 (function(){
-  var bar=document.getElementById('bar');
-  function prog(){
+  var bar=document.getElementById('progress');
+  function tick(){
     var h=document.documentElement.scrollHeight-window.innerHeight;
     bar.style.width=(h>0?(window.scrollY/h)*100:0)+'%';
   }
-  window.addEventListener('scroll',prog,{passive:true});
-  window.addEventListener('resize',prog);prog();
-
+  window.addEventListener('scroll',tick,{passive:true});
+  window.addEventListener('resize',tick);tick();
   var io=new IntersectionObserver(function(es){
-    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
-  },{threshold:0.16,rootMargin:'0px 0px -8% 0px'});
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
 })();
 </script>
